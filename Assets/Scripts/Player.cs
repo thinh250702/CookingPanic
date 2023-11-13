@@ -16,7 +16,7 @@ public class Player : MonoBehaviour, IParentObject {
     [SerializeField] private Transform cameraRoot;
 
     private InteractableObject selectedObject;
-    private List<PickableObject> holdingObjectList;
+    private List<PickableObject> holdingObjectList = new List<PickableObject>();
     private RaycastHit raycastHit;
     private StarterAssetsInputs _input;
 
@@ -29,7 +29,6 @@ public class Player : MonoBehaviour, IParentObject {
 
     private void Start() {
         _input = GetComponent<StarterAssetsInputs>();
-        holdingObjectList = new List<PickableObject>();
     }
 
     private void Update() {
@@ -70,7 +69,7 @@ public class Player : MonoBehaviour, IParentObject {
         } else {
             SetSelectedObject(null);
         }
-        Debug.DrawRay(cameraRoot.transform.position, cameraRoot.transform.forward * interactDistance, Color.red);
+        //Debug.DrawRay(cameraRoot.transform.position, cameraRoot.transform.forward * interactDistance, Color.red);
     }
 
     private void SetSelectedObject(InteractableObject selectedObject) {
@@ -109,5 +108,9 @@ public class Player : MonoBehaviour, IParentObject {
             }
         }
         //holdingObjectList.Clear();
+    }
+
+    public void ClearAllChildrenObject() {
+        holdingObjectList.Clear();
     }
 }

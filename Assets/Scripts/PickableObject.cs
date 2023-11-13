@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
+using Unity.VisualScripting;
+using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PickableObject : InteractableObject {
-
-    [SerializeField] protected KitchenObjectSO kitchenObjectSO;
 
     protected IParentObject kitchenObjectParent;
     private float moveTime = .2f;
@@ -13,9 +15,21 @@ public class PickableObject : InteractableObject {
         float elapsedTime = 0;
         float waitTime = moveTime;
 
+        Vector3 start = objectTransform.position;
+        Vector3 end = targetPoint;
+        Vector3 centerPivot = (start + end) * 0.5f;
+
         while (elapsedTime < waitTime) {
             float percentageComplete = elapsedTime / waitTime;
-            objectTransform.position = Vector3.Lerp(objectTransform.position, targetPoint, percentageComplete);
+
+            centerPivot -= Vector3.up * .2f;
+            Vector3 startRelCenter = start - centerPivot;
+            Vector3 endRelCenter = end - centerPivot;
+
+            //objectTransform.position = Vector3.Lerp(objectTransform.position, targetPoint, percentageComplete);
+            objectTransform.position = Vector3.Slerp(startRelCenter, endRelCenter, percentageComplete);
+            objectTransform.position += centerPivot;
+
             objectTransform.localRotation = Quaternion.Slerp(objectTransform.localRotation, rotation, percentageComplete);
             elapsedTime += Time.deltaTime;
             yield return null;
@@ -23,50 +37,68 @@ public class PickableObject : InteractableObject {
         objectTransform.position = targetPoint;
     }
 
-    protected IEnumerator ActivateRigibody(PickableObject pickableObject) {
+    protected IEnumerator ActivateRigibody() {
         yield return null;
-        if (pickableObject.TryGetComponent<Rigidbody>(out Rigidbody rigidbody)) {
+        if (this.TryGetComponent<Rigidbody>(out Rigidbody rigidbody)) {
             rigidbody.isKinematic = false;
         }
     }
 
-    protected IEnumerator DeactivateRigibody(PickableObject pickableObject) {
+    protected IEnumerator DeactivateRigibody() {
         yield return null;
-        if (pickableObject.TryGetComponent<Rigidbody>(out Rigidbody rigidbody)) {
+        if (this.TryGetComponent<Rigidbody>(out Rigidbody rigidbody)) {
             rigidbody.isKinematic = true;
         }
     }
 
-    protected void SetObjectParent(PickableObject pickableObject, IParentObject parentObject) {
-        IParentObject previousParent = pickableObject.kitchenObjectParent;
+    public void SetObjectParent(IParentObject parentObject) {
+        IParentObject previousParent = kitchenObjectParent;
         if (previousParent != null) {
-            previousParent.RemoveChildrenObject(pickableObject);
+            previousParent.RemoveChildrenObject(this);
         }
-        pickableObject.transform.SetParent(parentObject.GetObjectFollowTransform());
-        parentObject.AddChildrenObject(pickableObject);
-        pickableObject.kitchenObjectParent = parentObject;
+        transform.SetParent(parentObject.GetObjectFollowTransform());
+        parentObject.AddChildrenObject(this);
+        kitchenObjectParent = parentObject;
     }
 
-    public static void SpawnKitchenObject(KitchenObjectSO kitchenObjectSO, IParentObject parentObject, Vector3 spawnPosition) {
-        Transform kitchenObjectTransform = Instantiate(kitchenObjectSO.prefab, spawnPosition, Quaternion.identity);
-        PickableObject kitchenObject = kitchenObjectTransform.GetComponent<PickableObject>();
-        kitchenObject.SetObjectParent(kitchenObject, parentObject);
-        if (parentObject is Player) {
-            kitchenObject.GetComponent<Rigidbody>().isKinematic = true;
+    public void NormalDropObject(IParentObject parentObject, Vector3 dropPosition, Quaternion rotation) {
+        StartCoroutine(MoveToSpot(this.transform, dropPosition, rotation));
+        this.SetObjectParent(parentObject);
+        //Enable Rigidbody to make the object falling
+        StartCoroutine(ActivateRigibody());
+    }
+
+    public void DropConcaveContainer(IParentObject parentObject, Vector3 dropPosition, Quaternion rotation) {
+        StartCoroutine(MoveToSpot(this.transform, dropPosition, rotation));
+        this.SetObjectParent(parentObject);
+        if (parentObject is Trashbin) {
+            this.GetComponent<MeshCollider>().convex = true;
+            StartCoroutine(ActivateRigibody());
+        } else {
+            StartCoroutine(DeactivateRigibody());
         }
     }
 
-    protected void NormalDropObject(PickableObject playerHoldingObject, IParentObject parentObject, Vector3 dropPosition) {
-        StartCoroutine(MoveToSpot(playerHoldingObject.transform, dropPosition, Quaternion.identity));
-        StartCoroutine(ActivateRigibody(playerHoldingObject));
-        SetObjectParent(playerHoldingObject, parentObject);
-    }
-
-    protected void NormalPickObject(PickableObject pickObject, Player player, Quaternion rotation) {
-        StartCoroutine(MoveToSpot(pickObject.transform, player.GetObjectFollowTransform().position, rotation));
-        SetObjectParent(pickObject, player);
+    public void NormalPickObject(Player player, Quaternion rotation) {
+        StartCoroutine(MoveToSpot(this.transform, player.GetObjectFollowTransform().position, rotation));
+        this.SetObjectParent(player);
         //Disable Rigidbody to prevent the object from falling
-        StartCoroutine(DeactivateRigibody(pickObject));
+        StartCoroutine(DeactivateRigibody());
+    }
+
+    public void DestroySelf() {
+        kitchenObjectParent.RemoveChildrenObject(this);
+        Destroy(gameObject);
+    }
+
+    public bool TryGetFoodContainer(out FoodContainer foodContainer) {
+        if (this is FoodContainer) {
+            foodContainer = this as FoodContainer;
+            return true;
+        } else {
+            foodContainer = null;
+            return false;
+        }
     }
 }
     

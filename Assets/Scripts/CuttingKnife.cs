@@ -19,7 +19,7 @@ public class CuttingKnife : PickableObject
         if (player.HasChildrenObject()) {
 
         } else {
-            NormalPickObject(this, player, Quaternion.Euler(0,180,-90));
+            this.NormalPickObject(player, Quaternion.Euler(0,180,-90));
         }
     }
 }

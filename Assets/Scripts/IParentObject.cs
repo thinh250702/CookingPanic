@@ -9,4 +9,6 @@ public interface IParentObject
     public void AddChildrenObject(PickableObject pickableObject);
     public void RemoveChildrenObject(PickableObject pickableObject);
     public bool HasChildrenObject();
+    public void ClearAllChildrenObject();
+
 }

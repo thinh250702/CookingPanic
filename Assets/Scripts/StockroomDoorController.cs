@@ -6,11 +6,11 @@ public class StockroomDoorController : MonoBehaviour
 {
     private Animator animator;
     private bool isOpen = false;
-    [SerializeField] private Door stockroomDoor;
+    [SerializeField] private BinaryStateObject stockroomDoor;
 
     private void Start() {
         animator = gameObject.GetComponent<Animator>();
-        stockroomDoor.OnDoorInteract += StockroomDoor_OnDoorInteract;
+        stockroomDoor.OnObjectInteract += StockroomDoor_OnDoorInteract;
     }
 
     private void StockroomDoor_OnDoorInteract(object sender, System.EventArgs e) {

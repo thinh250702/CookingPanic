@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5642196615594315415}
+  - component: {fileID: 5160345843456749341}
   m_Layer: 0
   m_Name: Lettuce
   m_TagString: Untagged
@@ -32,6 +33,27 @@ Transform:
   - {fileID: 295840961665669680}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5160345843456749341
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8556178116606265576}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.13680772, y: 0.0043554967, z: 0.13728358}
+  m_Center: {x: 0.0015465245, y: 0.0013616136, z: -0.004401639}
 --- !u!1001 &257180945049386459
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40,58 +62,47 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5642196615594315415}
     m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: f4173a0af14f893418fb2200131b8536,
-        type: 3}
+    - target: {fileID: -8679921383154817045, guid: f4173a0af14f893418fb2200131b8536, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: f4173a0af14f893418fb2200131b8536,
-        type: 3}
+    - target: {fileID: -8679921383154817045, guid: f4173a0af14f893418fb2200131b8536, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.029352
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: f4173a0af14f893418fb2200131b8536,
-        type: 3}
+    - target: {fileID: -8679921383154817045, guid: f4173a0af14f893418fb2200131b8536, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: f4173a0af14f893418fb2200131b8536,
-        type: 3}
+    - target: {fileID: -8679921383154817045, guid: f4173a0af14f893418fb2200131b8536, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: f4173a0af14f893418fb2200131b8536,
-        type: 3}
+    - target: {fileID: -8679921383154817045, guid: f4173a0af14f893418fb2200131b8536, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: f4173a0af14f893418fb2200131b8536,
-        type: 3}
+    - target: {fileID: -8679921383154817045, guid: f4173a0af14f893418fb2200131b8536, type: 3}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: f4173a0af14f893418fb2200131b8536,
-        type: 3}
+    - target: {fileID: -8679921383154817045, guid: f4173a0af14f893418fb2200131b8536, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: f4173a0af14f893418fb2200131b8536,
-        type: 3}
+    - target: {fileID: -8679921383154817045, guid: f4173a0af14f893418fb2200131b8536, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: f4173a0af14f893418fb2200131b8536,
-        type: 3}
+    - target: {fileID: -8679921383154817045, guid: f4173a0af14f893418fb2200131b8536, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: f4173a0af14f893418fb2200131b8536,
-        type: 3}
+    - target: {fileID: -8679921383154817045, guid: f4173a0af14f893418fb2200131b8536, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: f4173a0af14f893418fb2200131b8536,
-        type: 3}
+    - target: {fileID: 919132149155446097, guid: f4173a0af14f893418fb2200131b8536, type: 3}
       propertyPath: m_Name
       value: Lettuce_Visual
       objectReference: {fileID: 0}
@@ -102,7 +113,6 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: f4173a0af14f893418fb2200131b8536, type: 3}
 --- !u!4 &295840961665669680 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f4173a0af14f893418fb2200131b8536,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f4173a0af14f893418fb2200131b8536, type: 3}
   m_PrefabInstance: {fileID: 257180945049386459}
   m_PrefabAsset: {fileID: 0}

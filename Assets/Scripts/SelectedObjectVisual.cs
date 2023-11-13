@@ -12,10 +12,12 @@ public class SelectedObjectVisual : MonoBehaviour
     }
 
     private void Instance_OnSelectedObjectChanged(object sender, Player.OnSelectedObjectChangedEventArgs e) {
-        if (e.selectedObject == interactableObject) {
-            outline.enabled = true;
-        } else {
-            outline.enabled = false;
+        if (outline != null) {
+            if (e.selectedObject == interactableObject) {
+                outline.enabled = true;
+            } else {
+                outline.enabled = false;
+            }
         }
     }
 }

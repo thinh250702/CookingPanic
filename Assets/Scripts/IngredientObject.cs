@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class IngredientObject : PickableObject {
+
+    [SerializeField] private IngredientObjectSO ingredientObjectSO;
+
+    public IngredientObjectSO GetIngredientObjectSO() {
+        return ingredientObjectSO;
+    }
+
     public override void Interact(Player player) {
         if (player.HasChildrenObject()) {
             // Player is carrying something
@@ -14,19 +21,22 @@ public class IngredientObject : PickableObject {
                 if (container is RaycastDropContainer) {
                     Transform containerTransform = container.GetObjectFollowTransform();
                     Vector3 dropPoint = new Vector3(containerTransform.position.x, containerTransform.position.y + .2f, containerTransform.position.z);
-                    StartCoroutine(MoveToSpot(this.transform, dropPoint, Quaternion.identity));
+                    this.NormalDropObject(container, dropPoint, Quaternion.identity);
                 }
-                if (container is StaticDropContainer) {
-                    StartCoroutine(MoveToSpot(this.transform, container.GetObjectFollowTransform().position, Quaternion.identity));
-                }
-                SetObjectParent(this, container);
             } else {
                 // Player is holding an ingredient - do nothing
             }
         } else {
             // Player is not carrying anything - pickup that ingredient
             Debug.Log("Doing Pickup");
-            NormalPickObject(this, player, Quaternion.identity);
+            this.NormalPickObject(player, Quaternion.identity);
         }
+    }
+
+    public static IngredientObject SpawnKitchenObject(IngredientObjectSO ingredientObjectSO, IParentObject kitchenObjectParent, Transform spawnTransform) {
+        Transform kitchenObjectTransform = Instantiate(ingredientObjectSO.prefab, spawnTransform.position, Quaternion.identity);
+        IngredientObject kitchenObject = kitchenObjectTransform.GetComponent<IngredientObject>();
+        kitchenObject.SetObjectParent(kitchenObjectParent);
+        return kitchenObject;
     }
 }

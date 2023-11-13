@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4671579730742667413}
   - component: {fileID: 5709543729075566409}
-  - component: {fileID: 8913815946887758499}
+  - component: {fileID: 1579432850629731344}
   - component: {fileID: 1497310192570591943}
   - component: {fileID: 7234779529467582018}
   - component: {fileID: 6171172713300367824}
@@ -58,8 +58,8 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!64 &8913815946887758499
-MeshCollider:
+--- !u!65 &1579432850629731344
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -76,10 +76,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2848334378514129032, guid: 30a2559386e871446856c129c3a6c648, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 0.048259, y: 0.016173, z: 0.332043}
+  m_Center: {x: 0.0136285, y: 0.0080865, z: -0.0651585}
 --- !u!114 &1497310192570591943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,14 +86,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4715858434631438937}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 1
-  outlineColor: {r: 1, g: 0.7647059, b: 0, a: 1}
-  outlineWidth: 6
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -123,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4106418eca6c70846b201c5dcc6b09ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cuttingBoard: {fileID: 0}
 --- !u!1001 &3868786901258607450
 PrefabInstance:
   m_ObjectHideFlags: 0

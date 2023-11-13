@@ -8,13 +8,13 @@ public class RefrigeratorDoorController : MonoBehaviour
     private Animator animator;
     private bool leftDoorOpen = false;
     private bool rightDoorOpen = false;
-    [SerializeField] private Door leftDoor;
-    [SerializeField] private Door rightDoor;
+    [SerializeField] private BinaryStateObject leftDoor;
+    [SerializeField] private BinaryStateObject rightDoor;
 
     private void Start() {
         animator = gameObject.GetComponent<Animator>();
-        leftDoor.OnDoorInteract += LeftDoor_OnDoorInteract;
-        rightDoor.OnDoorInteract += RightDoor_OnDoorInteract;
+        leftDoor.OnObjectInteract += LeftDoor_OnDoorInteract;
+        rightDoor.OnObjectInteract += RightDoor_OnDoorInteract;
     }
 
     private void RightDoor_OnDoorInteract(object sender, System.EventArgs e) {

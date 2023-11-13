@@ -56,8 +56,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.16493401, y: 0.025641, z: 0.164935}
-  m_Center: {x: 0, y: 0.0129135, z: -0.0000004954636}
+  m_Size: {x: 0.12157434, y: 0.018900212, z: 0.12157507}
+  m_Center: {x: 0, y: 0.009518657, z: -0.00000036507845}
 --- !u!54 &2655324863993945308
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -97,9 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMode: 1
-  outlineColor: {r: 1, g: 0.7647059, b: 0, a: 1}
-  outlineWidth: 4
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -128,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3646f2091d092b74e85545100c41a142, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kitchenObjectSO: {fileID: 0}
+  ingredientObjectSO: {fileID: 0}
 --- !u!1001 &1292027122738883716
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -53,14 +53,10 @@ public class Outline : MonoBehaviour {
     public List<Vector3> data;
   }
 
-  [SerializeField]
+  
   private Mode outlineMode = Mode.OutlineVisible;
-
-  [SerializeField]
-  private Color outlineColor = Color.white;
-
-  [SerializeField, Range(0f, 10f)]
-  private float outlineWidth = 6f;
+  private Color outlineColor = new Color(1.0f, 0.76471f, 0f);
+  private float outlineWidth = 4f;
 
   [Header("Optional")]
 

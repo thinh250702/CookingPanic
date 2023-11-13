@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 698277cfadb1f6746a2a083b97a0a6e3, type: 3}
+  m_Name: BottomBunStock
+  m_EditorClassIdentifier: 
+  stockName: Bottom Bun
+  prefab: {fileID: 2515070551510917132, guid: f90243bc419a5444984673f7449f242f, type: 3}
+  quantity: 5
