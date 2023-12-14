@@ -52,6 +52,7 @@ public class DataPersistenceManager : MonoBehaviour
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         if (scene.buildIndex == 1) {
             Debug.Log("LevelSelection is loaded!");
+            Time.timeScale = 1f;
             Cursor.lockState = CursorLockMode.None;
         }
         if (scene.buildIndex == 2) {

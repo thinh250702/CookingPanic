@@ -31,10 +31,14 @@ public class Player : MonoBehaviour, IParentObject {
 
     private void Start() {
         _input = GetComponent<StarterAssetsInputs>();
+        _input.cursorInputForLook = false;
         GameHandler.Instance.OnStateChanged += GameHandler_OnStateChanged;
     }
 
     private void GameHandler_OnStateChanged(object sender, EventArgs e) {
+        if (GameHandler.Instance.IsGamePlaying()) {
+            _input.cursorInputForLook = true;
+        }
         if (GameHandler.Instance.IsGameOver()) {
             _input.cursorInputForLook = false;
         }
@@ -124,7 +128,6 @@ public class Player : MonoBehaviour, IParentObject {
                 holdingObjectList.Remove(item);
             }
         }
-        //holdingObjectList.Clear();
     }
 
     public void ClearAllChildrenObject() {

@@ -13,6 +13,7 @@ public class SaveSlotsMenu : MonoBehaviour
     [SerializeField] private MainMenu mainMenu;
 
     [Header("Menu Buttons")]
+    [SerializeField] private Button loadButton;
     [SerializeField] private Button overrideButton;
     [SerializeField] private Button deleteButton;
     [SerializeField] private Button backButton;
@@ -32,6 +33,7 @@ public class SaveSlotsMenu : MonoBehaviour
     private bool isLoadGame = false;
 
     private void Start() {
+        gameObject.SetActive(false);
         ResetSlotsVisual();
     }
 
@@ -64,21 +66,11 @@ public class SaveSlotsMenu : MonoBehaviour
 
         DisableButtonsDependingOnData(saveSlot);
 
-        // case - load game mode and slot has data
+        // case - load game mode
         if (isLoadGame) {
             // slot has data
             if (saveSlot.hasData) {
-                Debug.Log("Ready to Load Game!");
-                confirmPopupUI.Show(
-                // function to execute if we select 'yes'
-                () => {
-                    DataPersistenceManager.Instance.ChangeSelectedProfileId(saveSlot.GetProfileId());
-                    SaveGameAndLoadScene();
-                },
-                // function to execute if we select 'cancel'
-                () => {
-                    ShowMenu(isLoadGame);
-                });
+                Debug.Log("Click Load button to load the game data!");
             } 
             // slot has no data - do nothing
             else {
@@ -109,9 +101,20 @@ public class SaveSlotsMenu : MonoBehaviour
         }
     }
 
-    public void ResetSlotsVisual() {
+    private void ResetSlotsVisual() {
         foreach (SaveSlot saveSlot in saveSlots) {
             if (selectedSaveSlot != null && saveSlot == selectedSaveSlot) { continue; }
+            if (saveSlot.hasData) {
+                saveSlot.background.color = hasDataNormal;
+                saveSlot.playerNameText.color = hasDataTextNormal;
+            } else {
+                saveSlot.background.color = emptyNormal;
+            }
+        }
+    }
+
+    private void ResetAllSlotsVisual() {
+        foreach (SaveSlot saveSlot in saveSlots) {
             if (saveSlot.hasData) {
                 saveSlot.background.color = hasDataNormal;
                 saveSlot.playerNameText.color = hasDataTextNormal;
@@ -129,7 +132,7 @@ public class SaveSlotsMenu : MonoBehaviour
     }
 
     public void OnOverrideClicked() {
-        Debug.Log("OverrideSlot");
+        Debug.Log("Override Slot");
         confirmPopupUI.Show(
         // function to execute if we select 'yes'
         () => {
@@ -144,7 +147,7 @@ public class SaveSlotsMenu : MonoBehaviour
     }
 
     public void OnDeleteClicked() {
-        Debug.Log("DeleteSlot");
+        Debug.Log("Delete Slot");
         confirmPopupUI.Show(
         // function to execute if we select 'yes'
         () => {
@@ -162,18 +165,26 @@ public class SaveSlotsMenu : MonoBehaviour
         HideMenu();
     }
 
-    public void ShowMenu(bool isLoadGame) {
-        // set this menu to be active
-        this.gameObject.SetActive(true);
+    public void OnLoadClicked() {
+        Debug.Log("Ready to Load Game!");
+        confirmPopupUI.Show(
+        // function to execute if we select 'yes'
+        () => {
+            DataPersistenceManager.Instance.ChangeSelectedProfileId(this.selectedSaveSlot.GetProfileId());
+            SaveGameAndLoadScene();
+        },
+        // function to execute if we select 'cancel'
+        () => {
+            ShowMenu(isLoadGame);
+        });
+    }
 
+    public void ShowMenu(bool isLoadGame) {
         // set mode
         this.isLoadGame = isLoadGame;
 
         // load all of the profiles that exist
         Dictionary<string, PlayerData> profilesGameData = DataPersistenceManager.Instance.GetAllProfilesGameData();
-
-        overrideButton.interactable = false;
-        deleteButton.interactable = false;
 
         // loop through each save slot in the UI and set the content appropriately
         foreach (SaveSlot saveSlot in saveSlots) {
@@ -181,6 +192,26 @@ public class SaveSlotsMenu : MonoBehaviour
             profilesGameData.TryGetValue(saveSlot.GetProfileId(), out profileData);
             saveSlot.SetData(profileData);
         }
+
+        // case: load game mode
+        if (isLoadGame) {
+            loadButton.gameObject.SetActive(true);
+            overrideButton.gameObject.SetActive(false);
+        } 
+        // case: new game mode
+        else {
+            loadButton.gameObject.SetActive(false);
+            overrideButton.gameObject.SetActive(true);
+        }
+
+        // reset all the slot visual before show menu
+        ResetAllSlotsVisual();
+        overrideButton.interactable = false;
+        deleteButton.interactable = false;
+        loadButton.interactable = false;
+
+        // set this menu to be active
+        this.gameObject.SetActive(true);
     }
 
     public void HideMenu() {
@@ -191,9 +222,11 @@ public class SaveSlotsMenu : MonoBehaviour
         if (saveSlot.hasData) {
             overrideButton.interactable = true;
             deleteButton.interactable = true;
+            loadButton.interactable = true;
         } else {
             overrideButton.interactable = false;
             deleteButton.interactable = false;
+            loadButton.interactable = false;
         }
     }
 }

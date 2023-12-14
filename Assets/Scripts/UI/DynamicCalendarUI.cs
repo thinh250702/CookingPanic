@@ -102,12 +102,7 @@ public class DynamicCalendarUI : MonoBehaviour, IDataPersistence
         return dictionary;
     }
 
-    private bool IsLevelEmpty(LevelData compareData) {
-        LevelData emptyData = new LevelData();
-        var emptyJSON = JsonConvert.SerializeObject(emptyData);
-        var compareJSON = JsonConvert.SerializeObject(compareData);
-        return emptyJSON == compareJSON;
-    }
+    
 
     private void SetCellVisual(DynamicCalendarSingleUI dayCell) {
         dayCell.dateText.text = dayCell.Day.ToString();
@@ -116,7 +111,7 @@ public class DynamicCalendarUI : MonoBehaviour, IDataPersistence
         if (dayCell.Type == DynamicCalendarSingleUI.CellType.Active) {
             dayCell.dateText.color = activeDayTextColor;
             // case: active cell is empty (no data = incompleted day)
-            if (IsLevelEmpty(dayCell.DayRecapData)) {
+            if (dayCell.DayRecapData.IsLevelEmpty()) {
                 dayCell.background.color = activeBackgroundColor;
                 dayCell.subInfo.gameObject.SetActive(false);
                 // case: incompleted day is current day - hide the lock
@@ -226,6 +221,8 @@ public class DynamicCalendarUI : MonoBehaviour, IDataPersistence
             // function to execute if we select 'yes'
             () => {
                 Debug.Log("Ready to start the game!");
+                // save the game before load
+                DataPersistenceManager.Instance.SaveGame();
                 // load the game play scene
                 SceneLoader.Load(SceneLoader.Scene.MainScene);
             },

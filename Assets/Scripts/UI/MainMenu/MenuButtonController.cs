@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class MenuButtonController : MonoBehaviour
@@ -13,10 +14,15 @@ public class MenuButtonController : MonoBehaviour
     public Color textActive;
     public Color textDisabled;
 
+    [SerializeField] private TextMeshProUGUI buttonDescription;
+
     public void OnButtonEnter(MenuButton button) {
         ResetButtons();
         button.background.color = buttonActive;
         button.buttonText.color = textActive;
+        if (buttonDescription != null) {
+            buttonDescription.text = button.description;
+        }
     }
 
     public void OnButtonExit(MenuButton button) {

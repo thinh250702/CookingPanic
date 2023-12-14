@@ -10,10 +10,12 @@ using UnityEngine.EventSystems;
 public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [SerializeField] private MenuButtonController buttonsController;
+    
 
     private bool isDisable = false;
     public Image background;
     public TextMeshProUGUI buttonText;
+    public string description;
 
     private Button buttonComponent;
 

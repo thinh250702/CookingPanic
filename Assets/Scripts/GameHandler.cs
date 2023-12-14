@@ -2,12 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.SceneManagement;
 
 public class GameHandler : MonoBehaviour, IDataPersistence {
+
     public static GameHandler Instance { get; private set; }
     public event EventHandler OnStateChanged;
+    public event EventHandler OnGamePaused;
+    public event EventHandler OnGameUnpaused;
 
     public class OnLevelDataChangedEventArgs : EventArgs {
         public float currentMoney;
@@ -49,9 +50,7 @@ public class GameHandler : MonoBehaviour, IDataPersistence {
     private int bad;
     private int lost;
 
-
     public LevelData SingleDayData { get; private set; }
-
 
     private void Awake() {
         if (Instance != null) {
@@ -72,11 +71,12 @@ public class GameHandler : MonoBehaviour, IDataPersistence {
         currentMoney = 0;
         totalGuests = 0;
 
+        SingleDayData = new LevelData(); // init the empty level data
         Player.Instance.OnPauseAction += Player_OnPauseAction;
     }
 
     private void Player_OnPauseAction(object sender, EventArgs e) {
-        PauseGame();
+        TogglePauseGame();
     }
 
     public bool UpdateExpenses(float spendAmount) {
@@ -144,7 +144,7 @@ public class GameHandler : MonoBehaviour, IDataPersistence {
                 gamePlayingTimer -= Time.deltaTime;
                 if (gamePlayingTimer < 0f) {
 
-                    // init the level data
+                    // init the level with data after day end
                     SingleDayData = new LevelData(currentMoney, expenses, foodSales, tips, totalGuests, perfect, good, bad, lost);
 
                     state = State.GameOver;
@@ -195,12 +195,14 @@ public class GameHandler : MonoBehaviour, IDataPersistence {
         playerData.calendarData[months[levelMonth - 1]][levelDay - 1] = SingleDayData;
     }
 
-    private void PauseGame() {
+    public void TogglePauseGame() {
         isGamePaused = !isGamePaused;
         if (isGamePaused) {
             Time.timeScale = 0f;
+            OnGamePaused?.Invoke(this, EventArgs.Empty);
         } else {
             Time.timeScale = 1f;
+            OnGameUnpaused?.Invoke(this, EventArgs.Empty);
         }
     }
 }

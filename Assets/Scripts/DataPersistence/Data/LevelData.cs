@@ -50,4 +50,11 @@ public class LevelData
             return 1;
         }
     }
+
+    public bool IsLevelEmpty() {
+        LevelData emptyData = new LevelData();
+        var emptyJSON = JsonConvert.SerializeObject(emptyData);
+        var compareJSON = JsonConvert.SerializeObject(this);
+        return emptyJSON == compareJSON;
+    }
 }

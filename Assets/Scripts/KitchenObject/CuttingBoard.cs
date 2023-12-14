@@ -42,21 +42,6 @@ public class CuttingBoard : ContainerObject, IHasProgress {
                 playerHoldPoint.localPosition = originalPosition;
             }
         }
-        
-        /*if (playerRaycastHit.transform != null) {
-            if (playerRaycastHit.transform.TryGetComponent<CuttingBoard>(out CuttingBoard cuttingBoard)) {
-                playerHitPoint = playerRaycastHit.point;
-                if (isEnter) {
-                    playerHoldPoint.position = new Vector3(playerHitPoint.x, playerHitPoint.y + .2f, playerHitPoint.z);
-                    //StartCoroutine(MoveToSpot(playerHoldPoint, new Vector3(playerHitPoint.x, playerHitPoint.y + .2f, playerHitPoint.z), Quaternion.identity));
-                    //Debug.Log(playerHoldPoint.localPosition);
-                } else {
-                    playerHoldPoint.localPosition = originalPosition;
-                }
-            } else {
-                playerHoldPoint.localPosition = originalPosition;
-            }
-        }*/
     }
     public override void Interact(Player player) {
         if (!HasChildrenObject()) {
