@@ -10,7 +10,6 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private Button resumeButton;
     [SerializeField] private Button recipeButton;
     [SerializeField] private Button quitButton;
-    [SerializeField] private TextMeshProUGUI buttonDescription;
 
     private void Awake() {
         resumeButton.onClick.AddListener(() => {
@@ -34,13 +33,13 @@ public class PauseMenu : MonoBehaviour
     }
 
     private void GameHandler_OnGameUnpaused(object sender, System.EventArgs e) {
-        Cursor.lockState = CursorLockMode.Locked;
         Hide();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void GameHandler_OnGamePaused(object sender, System.EventArgs e) {
-        Cursor.lockState = CursorLockMode.None;
         Show();
+        Cursor.lockState = CursorLockMode.None;
     }
 
     private void Show() {

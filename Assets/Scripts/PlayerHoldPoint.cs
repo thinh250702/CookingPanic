@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LockRotation : MonoBehaviour
+public class PlayerHoldPoint : MonoBehaviour
 {
     [SerializeField] private Transform playerCameraRoot;
 

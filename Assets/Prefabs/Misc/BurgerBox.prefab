@@ -129,7 +129,13 @@ MonoBehaviour:
   parentObjectTransform: {fileID: 2128851554334749886}
   containerObjectSO: {fileID: 11400000, guid: e757b3401d1da204d80c82f8720b1077, type: 2}
   type: 0
-  validObjectSOList: []
+  validObjectSOList:
+  - {fileID: 11400000, guid: 1692397b43170ca43b573e16ab33abcd, type: 2}
+  - {fileID: 11400000, guid: 3bfcb0003307f464ca4a4215fea603c4, type: 2}
+  - {fileID: 11400000, guid: e03cf010b014a464686fd70227b2149e, type: 2}
+  - {fileID: 11400000, guid: 161123a89af178446a7df6a164d3dfc1, type: 2}
+  - {fileID: 11400000, guid: f5e10cb2486b25b4cadacb35e7336434, type: 2}
+  - {fileID: 11400000, guid: 8d768197a2434934bb33c86956cec1bb, type: 2}
 --- !u!1001 &5403797186270692828
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -198,9 +198,11 @@ public class GameHandler : MonoBehaviour, IDataPersistence {
     public void TogglePauseGame() {
         isGamePaused = !isGamePaused;
         if (isGamePaused) {
+            Debug.Log("Pause Game!");
             Time.timeScale = 0f;
             OnGamePaused?.Invoke(this, EventArgs.Empty);
         } else {
+            Debug.Log("Unpause Game!");
             Time.timeScale = 1f;
             OnGameUnpaused?.Invoke(this, EventArgs.Empty);
         }

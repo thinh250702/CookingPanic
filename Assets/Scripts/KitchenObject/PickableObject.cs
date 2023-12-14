@@ -67,6 +67,12 @@ public class PickableObject : InteractableObject {
         StartCoroutine(ActivateRigibody());
     }
 
+    public void DropSauce(IParentObject parentObject) {
+        SetObjectParent(parentObject);
+        //Enable Rigidbody to make the object falling
+        StartCoroutine(ActivateRigibody());
+    }
+
     public void DropConcaveContainer(IParentObject parentObject, Vector3 dropPosition, Quaternion rotation) {
         StartCoroutine(MoveToSpot(transform, dropPosition, rotation));
         SetObjectParent(parentObject);

@@ -26,8 +26,21 @@ public class FoodPackage : ContainerObject {
                 if (TryAddIngredient(playerIngredient.GetIngredientObjectSO())) {
                     Transform containerTransform = this.GetObjectFollowTransform();
                     float height = GetCurrentHeight();
-                    Vector3 dropPoint = new Vector3(containerTransform.position.x, containerTransform.position.y + height + .05f, containerTransform.position.z);
-                    playerIngredient.NormalDropObject(this, dropPoint, Quaternion.identity);
+                    Vector3 dropPoint = new Vector3(containerTransform.position.x, 
+                        containerTransform.position.y + height + .05f, 
+                        containerTransform.position.z);
+
+                    // case: add ketchup or mustard
+                    if (playerIngredient.GetIngredientObjectSO().ingredientName == "Ketchup" || 
+                        playerIngredient.GetIngredientObjectSO().ingredientName == "Mustard") {
+                        Transform sauceTransform = Instantiate(playerIngredient.GetIngredientObjectSO().prefab, dropPoint, Quaternion.identity);
+                        sauceTransform.GetComponent<IngredientObject>().DropSauce(this);
+                    } 
+                    // case: other ingredients
+                    else {
+                        playerIngredient.NormalDropObject(this, dropPoint, Quaternion.identity);
+                    }
+                    
                 }
             } else {
                 PopupMessageUI.Instance.SetMessage("Can not pick up food package!");

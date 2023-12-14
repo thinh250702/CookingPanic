@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 698277cfadb1f6746a2a083b97a0a6e3, type: 3}
-  m_Name: ServingTrayStock
+  m_Script: {fileID: 11500000, guid: 3c7b353daebb79f49b9235f2c8766889, type: 3}
+  m_Name: MustardSauce
   m_EditorClassIdentifier: 
-  stockName: Serving Tray
-  prefab: {fileID: 7201978539472763966, guid: c0bc99a3a28698249999c03adc10df03, type: 3}
-  quantity: 5
+  ingredientName: Mustard
+  prefab: {fileID: 8912905109593677692, guid: 2b03270967fc5b94b8ceac741e0dfecf, type: 3}
   sprite: {fileID: 0}
-  restockPrice: 0
+  description: This is for description

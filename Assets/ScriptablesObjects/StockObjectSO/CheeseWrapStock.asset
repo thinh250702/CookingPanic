@@ -15,5 +15,5 @@ MonoBehaviour:
   stockName: Cheddar Cheese
   prefab: {fileID: 161424158044752034, guid: 264597b5213a2e24496aba4d37950c46, type: 3}
   quantity: 5
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: c62ba59ba86cea844bcdd0920a30a7ae, type: 3}
   restockPrice: 5

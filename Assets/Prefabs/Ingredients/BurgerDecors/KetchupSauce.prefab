@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2003710405452318742, guid: 8dbee5df500c5704389387285e8bc1d9, type: 3}
+      propertyPath: ingredientObjectSO
+      value: 
+      objectReference: {fileID: 11400000, guid: f5e10cb2486b25b4cadacb35e7336434, type: 2}
     - target: {fileID: 4287938436383716648, guid: 8dbee5df500c5704389387285e8bc1d9, type: 3}
       propertyPath: m_Name
       value: KetchupSauce

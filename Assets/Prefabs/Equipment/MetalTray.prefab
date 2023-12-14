@@ -129,6 +129,7 @@ MonoBehaviour:
   parentObjectTransform: {fileID: 4717288596940777142}
   containerObjectSO: {fileID: 11400000, guid: 1f6cb6fa5b4cfb54d8ac8e10198f953e, type: 2}
   canPick: 1
+  type: 0
 --- !u!1001 &1421877649406099838
 PrefabInstance:
   m_ObjectHideFlags: 0
