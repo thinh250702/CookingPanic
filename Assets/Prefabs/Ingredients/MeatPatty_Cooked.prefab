@@ -32,14 +32,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MeatPatty_Cooked
       objectReference: {fileID: 0}
-    - target: {fileID: 6151024029810749266, guid: 4c7497ac06839c641b1498f13385db9f, type: 3}
-      propertyPath: ingredientObjectSO
-      value: 
-      objectReference: {fileID: 11400000, guid: e03cf010b014a464686fd70227b2149e, type: 2}
-    - target: {fileID: 7433651110750692203, guid: 4c7497ac06839c641b1498f13385db9f, type: 3}
-      propertyPath: interactableObject
-      value: 
-      objectReference: {fileID: 3822737273753084353}
     - target: {fileID: 7681199514160249948, guid: 4c7497ac06839c641b1498f13385db9f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -85,14 +77,3 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c7497ac06839c641b1498f13385db9f, type: 3}
---- !u!114 &3822737273753084353 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6151024029810749266, guid: 4c7497ac06839c641b1498f13385db9f, type: 3}
-  m_PrefabInstance: {fileID: 6940544589324373651}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3646f2091d092b74e85545100c41a142, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

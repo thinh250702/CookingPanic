@@ -6,4 +6,6 @@ using UnityEngine;
 public class ContainerObjectSO : ScriptableObject {
     public string containerName;
     public Transform prefab;
+    public Sprite sprite;
+    public string description = "This is for description";
 }

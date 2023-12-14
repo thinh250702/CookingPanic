@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c7b353daebb79f49b9235f2c8766889, type: 3}
   m_Name: MeatPattyCooked
   m_EditorClassIdentifier: 
-  ingredientName: Meat Patty
+  ingredientName: Meat Patty (Cooked)
   prefab: {fileID: 777115898646164175, guid: 5ca01318d6f226b43b9b410f95cf5c7a, type: 3}
+  sprite: {fileID: 21300000, guid: ce1bedb37ac4c0b4bae2e7c584d71212, type: 3}
+  description: This is for description

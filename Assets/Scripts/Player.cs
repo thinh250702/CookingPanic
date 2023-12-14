@@ -2,11 +2,13 @@ using StarterAssets;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph.Serialization;
 using UnityEngine;
 
 public class Player : MonoBehaviour, IParentObject {
     public static Player Instance { get; private set; }
 
+    public event EventHandler<EventArgs> OnPauseAction;
     public event EventHandler<OnSelectedObjectChangedEventArgs> OnSelectedObjectChanged;
     public class OnSelectedObjectChangedEventArgs : EventArgs {
         public InteractableObject selectedObject;
@@ -29,12 +31,20 @@ public class Player : MonoBehaviour, IParentObject {
 
     private void Start() {
         _input = GetComponent<StarterAssetsInputs>();
+        GameHandler.Instance.OnStateChanged += GameHandler_OnStateChanged;
+    }
+
+    private void GameHandler_OnStateChanged(object sender, EventArgs e) {
+        if (GameHandler.Instance.IsGameOver()) {
+            _input.cursorInputForLook = false;
+        }
     }
 
     private void Update() {
         Interact();
         InteractAlternate();
         HandleInteractions();
+        HandlePauseGame();
     }
 
     private void Interact() {
@@ -54,6 +64,13 @@ public class Player : MonoBehaviour, IParentObject {
             }
             _input.interactAlternate = false;
         }
+    }
+
+    private void HandlePauseGame() {
+        if (_input.pause) {
+            OnPauseAction?.Invoke(this, EventArgs.Empty);
+        }
+        _input.pause = false;
     }
 
     private void HandleInteractions() {

@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c7b353daebb79f49b9235f2c8766889, type: 3}
   m_Name: TomatoSlices
   m_EditorClassIdentifier: 
-  ingredientName: Tomato
+  ingredientName: Tomato (Sliced)
   prefab: {fileID: 659893091994237760, guid: 2e547e333040e414c92e8c7a668e7c72, type: 3}
+  sprite: {fileID: 0}
+  description: This is for description

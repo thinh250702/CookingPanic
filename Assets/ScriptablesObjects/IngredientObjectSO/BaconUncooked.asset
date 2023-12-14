@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c7b353daebb79f49b9235f2c8766889, type: 3}
   m_Name: BaconUncooked
   m_EditorClassIdentifier: 
-  ingredientName: Bacon
+  ingredientName: Bacon (Uncooked)
   prefab: {fileID: 483429485797140702, guid: 3acfc49513a941d43861edab1fc1ec83, type: 3}
+  sprite: {fileID: 21300000, guid: 505f5320a1479ea418020511215698b3, type: 3}
+  description: This is for description

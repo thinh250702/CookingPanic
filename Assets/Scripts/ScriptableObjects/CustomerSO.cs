@@ -8,5 +8,5 @@ public class CustomerSO : ScriptableObject
     public string customerName;
     public Transform prefab;
     public float waitingTime;
-    public int maxTip;
+    public float maxTip;
 }

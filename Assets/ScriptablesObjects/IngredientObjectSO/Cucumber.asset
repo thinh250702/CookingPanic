@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Cucumber
   m_EditorClassIdentifier: 
   ingredientName: Cucumber
-  prefab: {fileID: 3012157822156164158, guid: e92d035579142e945a84339429e7c8c1, type: 3}
+  prefab: {fileID: 6928628484614492916, guid: 6b641dddc9687cf47bf377df6cd1faf8, type: 3}
+  sprite: {fileID: 21300000, guid: 0d1f927c55826c846b0e38f4cf2d4182, type: 3}
+  description: This is for description

@@ -15,3 +15,5 @@ MonoBehaviour:
   stockName: Onion
   prefab: {fileID: 2735311347269637968, guid: 4d72aeb1edf2b504a9c4eea0ed76757f, type: 3}
   quantity: 5
+  sprite: {fileID: 21300000, guid: 82f13cf56f59edb4297b8329abc9d684, type: 3}
+  restockPrice: 5

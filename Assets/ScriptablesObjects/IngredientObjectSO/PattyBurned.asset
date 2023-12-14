@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientName: Patty Burned
   prefab: {fileID: 777115898646164175, guid: f74e63f7706af3a49b2e2b68b81f0062, type: 3}
+  sprite: {fileID: 21300000, guid: 2d4a940b1e546aa4897194108bfed4d2, type: 3}
+  description: This is for description

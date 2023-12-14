@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db3f927608f41e346bf6fa72be07c0ac, type: 3}
   m_Name: TestBurger02
   m_EditorClassIdentifier: 
-  recipeName: OnlyTomatoBurger
+  recipeName: Tomato Burger
   componentList:
   - {fileID: 11400000, guid: 41f4464472c0a4a4baa79025ec5f252b, type: 2}
   price: 0

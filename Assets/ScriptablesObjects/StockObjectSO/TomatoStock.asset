@@ -15,3 +15,5 @@ MonoBehaviour:
   stockName: Tomato
   prefab: {fileID: 102787117630527408, guid: b14083da7187b064db2fa48b58341e77, type: 3}
   quantity: 5
+  sprite: {fileID: 21300000, guid: f7ca8d6d6fcccd849a413bb13afcdefd, type: 3}
+  restockPrice: 5

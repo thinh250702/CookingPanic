@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4888214d57d63c64cb25a573fe1cb877, type: 3}
   m_Name: ServingTray
   m_EditorClassIdentifier: 
-  containerName: ServingTray
+  containerName: Serving Tray
   prefab: {fileID: 7201978539472763966, guid: c0bc99a3a28698249999c03adc10df03, type: 3}
+  sprite: {fileID: 0}
+  description: Metal Tray is used for picking container.

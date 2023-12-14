@@ -147,8 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8145d521905ceed4a8f711bc88afde85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stockObjectSO: {fileID: 11400000, guid: 981c6b66148ef0d4bb8b4270ad049165, type: 2}
-  originalTransform: {fileID: 2576507080370642674}
+  stockObjectSO: {fileID: 11400000, guid: 9da6c9d8079220446a85da98056d735e, type: 2}
 --- !u!1001 &6908154123897427978
 PrefabInstance:
   m_ObjectHideFlags: 0

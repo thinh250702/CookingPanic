@@ -15,3 +15,5 @@ MonoBehaviour:
   stockName: Fish Patty
   prefab: {fileID: 777115898646164175, guid: 5e9bcd4c25d5b2047b02d4428ee0ae6d, type: 3}
   quantity: 5
+  sprite: {fileID: 21300000, guid: 21d1555200b7e9541ad34291ab715f8c, type: 3}
+  restockPrice: 5

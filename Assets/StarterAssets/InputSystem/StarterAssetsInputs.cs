@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 namespace StarterAssets {
     public class StarterAssetsInputs : MonoBehaviour {
+
         [Header("Character Input Values")]
         public Vector2 move;
         public Vector2 look;
@@ -12,6 +13,7 @@ namespace StarterAssets {
         public bool sprint;
         public bool interact;
         public bool interactAlternate;
+        public bool pause;
 
         [Header("Movement Settings")]
         public bool analogMovement;
@@ -47,6 +49,10 @@ namespace StarterAssets {
             InteractAlternateInput(value.isPressed);
         }
 
+        public void OnPause(InputValue value) {
+            PauseInput(value.isPressed);
+        }
+
 #endif
 
         public void MoveInput(Vector2 newMoveDirection) {
@@ -71,6 +77,10 @@ namespace StarterAssets {
 
         public void InteractAlternateInput(bool newInteractAlternateState) {
             interactAlternate = newInteractAlternateState;
+        }
+
+        public void PauseInput(bool newPauseState) {
+            pause = newPauseState;
         }
 
 

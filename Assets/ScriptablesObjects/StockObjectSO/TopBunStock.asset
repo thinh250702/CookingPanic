@@ -15,3 +15,5 @@ MonoBehaviour:
   stockName: Top Bun
   prefab: {fileID: 2593130065068364488, guid: 0c5a1b535a38734448ca37f69d7bf362, type: 3}
   quantity: 5
+  sprite: {fileID: 21300000, guid: cea9c7e57ed354344aa049cd51914a15, type: 3}
+  restockPrice: 5

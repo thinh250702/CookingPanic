@@ -15,3 +15,5 @@ MonoBehaviour:
   stockName: Cucumber
   prefab: {fileID: 3012157822156164158, guid: e92d035579142e945a84339429e7c8c1, type: 3}
   quantity: 5
+  sprite: {fileID: 21300000, guid: 0d842b61e06611347a864f68acee1e05, type: 3}
+  restockPrice: 5

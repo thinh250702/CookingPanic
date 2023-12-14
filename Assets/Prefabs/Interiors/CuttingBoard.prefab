@@ -65,11 +65,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 808081646224826781}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 0.7647059, b: 0, a: 1}
+  outlineWidth: 6
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -85,11 +88,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4ea4a398d94f1f46b597b0febc21e9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  kitchenObjectSO: {fileID: 0}
   parentObjectTransform: {fileID: 4928880418202436617}
   canPick: 0
   playerHoldPoint: {fileID: 0}
-  cuttingRecipeSOArray:
-  - {fileID: 11400000, guid: 74e3c701c279a624bb5ed095d204fc39, type: 2}
 --- !u!114 &5675234775125517763
 MonoBehaviour:
   m_ObjectHideFlags: 0

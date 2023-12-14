@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c7b353daebb79f49b9235f2c8766889, type: 3}
+  m_Name: PotatoStockSingle
+  m_EditorClassIdentifier: 
+  ingredientName: Potato (Stock)
+  prefab: {fileID: 5638719183880960676, guid: 5a81fb362a961784a86085a849e07c09, type: 3}
+  sprite: {fileID: 21300000, guid: 11e747eb430f2c347a4c3bced6ad8feb, type: 3}
+  description: This is for description

@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Cabbage
   m_EditorClassIdentifier: 
   ingredientName: Cabbage
-  prefab: {fileID: 32932232120815756, guid: 732b79ed2d45ebe40b2e720848ea3097, type: 3}
+  prefab: {fileID: 5642196615594315415, guid: 9aaa96660b3d6ee478498c87f573e820, type: 3}
+  sprite: {fileID: 21300000, guid: bd309b61e6fe65c48af4ca93e75a81ed, type: 3}
+  description: This is for description

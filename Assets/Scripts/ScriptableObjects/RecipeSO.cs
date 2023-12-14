@@ -6,5 +6,5 @@ using UnityEngine;
 public class RecipeSO : ScriptableObject {
     public string recipeName;
     public List<IngredientObjectSO> componentList;
-    public int price;
+    public float price;
 }

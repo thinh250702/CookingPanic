@@ -15,3 +15,5 @@ MonoBehaviour:
   stockName: Bottom Bun
   prefab: {fileID: 2515070551510917132, guid: f90243bc419a5444984673f7449f242f, type: 3}
   quantity: 5
+  sprite: {fileID: 21300000, guid: 68ae8a00aaff9c04abc709c17dde7de0, type: 3}
+  restockPrice: 5

@@ -15,3 +15,5 @@ MonoBehaviour:
   stockName: Cabbage
   prefab: {fileID: 32932232120815756, guid: 732b79ed2d45ebe40b2e720848ea3097, type: 3}
   quantity: 5
+  sprite: {fileID: 21300000, guid: cf4f4df25e4577e4ba1aadaa9a90fb70, type: 3}
+  restockPrice: 5

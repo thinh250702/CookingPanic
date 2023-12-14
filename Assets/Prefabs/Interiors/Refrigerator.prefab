@@ -125,10 +125,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: IngredientTray_RawFish
       objectReference: {fileID: 0}
-    - target: {fileID: 8290421737049484982, guid: 38f922ea244d1eb48a29417d12eb1f18, type: 3}
-      propertyPath: stockObjectSO
-      value: 
-      objectReference: {fileID: 11400000, guid: 5aa4a3789fdbb354aad90edfcecc7949, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -270,6 +266,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.7647059, b: 0, a: 1}
+  outlineWidth: 6
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -341,6 +340,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.7647059, b: 0, a: 1}
+  outlineWidth: 6
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -471,10 +473,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: IngredientTray_RawMeat
       objectReference: {fileID: 0}
-    - target: {fileID: 4024880683347783696, guid: 7c1e10689f1dfa44fb7c28b742023b1b, type: 3}
-      propertyPath: stockObjectSO
-      value: 
-      objectReference: {fileID: 11400000, guid: e13c2199f4e88944391ae4f0f8a70805, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

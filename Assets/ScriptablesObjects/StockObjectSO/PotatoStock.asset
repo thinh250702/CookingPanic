@@ -15,3 +15,5 @@ MonoBehaviour:
   stockName: Potato
   prefab: {fileID: 5638719183880960676, guid: 5a81fb362a961784a86085a849e07c09, type: 3}
   quantity: 5
+  sprite: {fileID: 21300000, guid: 11e747eb430f2c347a4c3bced6ad8feb, type: 3}
+  restockPrice: 5

@@ -15,3 +15,5 @@ MonoBehaviour:
   stockName: Burger Box
   prefab: {fileID: 2128851554334749886, guid: 20a6e8d40f5ae634b9e3723b0f46a811, type: 3}
   quantity: 5
+  sprite: {fileID: 21300000, guid: ce104b5161d73c04ba24f390bcfaace3, type: 3}
+  restockPrice: 5
