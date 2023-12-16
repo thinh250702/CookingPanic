@@ -38,6 +38,7 @@ public class StockHolderObject : ContainerObject, IHasProgress {
                     });
                     if (fillingTimer > fillingTimeMax) {
                         // Filled
+                        PopupMessageUI.Instance.SetMessage("The ingredient has been restocked!");
                         stockObject.gameObject.SetActive(true);
                         state = State.Filled;
                         stockObject.ResetQuantity();

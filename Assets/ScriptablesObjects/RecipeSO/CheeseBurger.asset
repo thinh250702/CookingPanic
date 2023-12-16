@@ -10,12 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db3f927608f41e346bf6fa72be07c0ac, type: 3}
-  m_Name: CheeseBurger
+  m_Name: Cheeseburger
   m_EditorClassIdentifier: 
   recipeName: Cheeseburger
+  recipeSprite: {fileID: 21300000, guid: d52cac089ed717b4195c36fe27e2c4c5, type: 3}
+  type: 0
   componentList:
-  - {fileID: 11400000, guid: 3bfcb0003307f464ca4a4215fea603c4, type: 2}
-  - {fileID: 11400000, guid: e03cf010b014a464686fd70227b2149e, type: 2}
-  - {fileID: 11400000, guid: 161123a89af178446a7df6a164d3dfc1, type: 2}
   - {fileID: 11400000, guid: 1692397b43170ca43b573e16ab33abcd, type: 2}
-  price: 10
+  - {fileID: 11400000, guid: 161123a89af178446a7df6a164d3dfc1, type: 2}
+  - {fileID: 11400000, guid: e03cf010b014a464686fd70227b2149e, type: 2}
+  - {fileID: 11400000, guid: 3bfcb0003307f464ca4a4215fea603c4, type: 2}
+  price: 2.3799999
+  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua.

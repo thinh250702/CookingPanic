@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientName: Mustard
   prefab: {fileID: 8912905109593677692, guid: 2b03270967fc5b94b8ceac741e0dfecf, type: 3}
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 267cf1d0b2052f84bb02481af7666c3f, type: 3}
   description: This is for description

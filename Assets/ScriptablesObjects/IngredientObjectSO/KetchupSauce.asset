@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientName: Ketchup
   prefab: {fileID: 7220153754510812767, guid: 00562bcfd178c7040968455ce1c304a3, type: 3}
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 40f9438916f25234089e67ce6c0a9d8a, type: 3}
   description: This is for description

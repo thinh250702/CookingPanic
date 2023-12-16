@@ -33,11 +33,13 @@ public class GameHandler : MonoBehaviour, IDataPersistence {
     private float waitingToStartTimer = 1f;
     private float countdownToStartTimer = 3f;
     private float gamePlayingTimer;
-    private float gamePlayingTimerMax = 60f;
+    private float gamePlayingTimerMax = 300f;
     private bool isGamePaused = false;
 
-    private int levelDay;
-    private int levelMonth;
+    /*public int levelDay { get; private set; }
+    public int levelMonth { get; private set; }*/
+
+    public DateTime levelDate { get; private set; }
 
     private float currentMoney;
     private float expenses;
@@ -90,7 +92,7 @@ public class GameHandler : MonoBehaviour, IDataPersistence {
             });
             return true;
         } else {
-            PopupMessageUI.Instance.SetMessage("Not have enough money to restock!");
+            PopupMessageUI.Instance.SetMessage($"You need {String.Format("${0:0.00}", spendAmount)} to restock this ingredient.");
             return false;
         }
     }
@@ -185,14 +187,20 @@ public class GameHandler : MonoBehaviour, IDataPersistence {
 
     public void LoadData(PlayerData playerData) {
         Debug.Log("Load Level Data!");
-        levelDay = playerData.currentDay;
-        levelMonth = playerData.currentMonth;
-        Debug.Log($"Now playing level: {levelDay}/{levelMonth}");
+
+        /*levelDay = playerData.currentDay;
+        levelMonth = playerData.currentMonth;*/
+        levelDate = playerData.currentDate;
     }
 
     public void SaveData(PlayerData playerData) {
         Debug.Log("Save Level Data!");
-        playerData.calendarData[months[levelMonth - 1]][levelDay - 1] = SingleDayData;
+        // case: the level data is not empty -> go to next day
+        if (!SingleDayData.IsLevelEmpty()) {
+            playerData.currentDate = levelDate.AddDays(1);
+            playerData.currentMoney += currentMoney;
+        }
+        playerData.calendarData[months[levelDate.Month - 1]][levelDate.Day - 1] = SingleDayData;
     }
 
     public void TogglePauseGame() {

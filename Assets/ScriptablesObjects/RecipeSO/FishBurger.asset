@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db3f927608f41e346bf6fa72be07c0ac, type: 3}
+  m_Name: FishBurger
+  m_EditorClassIdentifier: 
+  recipeName: Fish Burger
+  recipeSprite: {fileID: 21300000, guid: c3233a6cb5a167645846951a136be513, type: 3}
+  type: 0
+  componentList:
+  - {fileID: 11400000, guid: 1692397b43170ca43b573e16ab33abcd, type: 2}
+  - {fileID: 11400000, guid: b3a728df1fde28249b88c1cc256bdd6f, type: 2}
+  - {fileID: 11400000, guid: 3bfcb0003307f464ca4a4215fea603c4, type: 2}
+  price: 2.24
+  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua.

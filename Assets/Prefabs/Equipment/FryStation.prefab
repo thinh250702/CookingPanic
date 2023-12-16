@@ -1,5 +1,39 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &486912541307917911
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4374554652288106669}
+  m_Layer: 0
+  m_Name: FryBasketController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4374554652288106669
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486912541307917911}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8920067994762638480}
+  - {fileID: 8429822233957599755}
+  - {fileID: 1304626621683268753}
+  m_Father: {fileID: 8934782787888334105}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &664176203766987419
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,7 +43,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8934782787888334105}
+  - component: {fileID: 1596019800358341849}
   - component: {fileID: 7217594362896410864}
+  - component: {fileID: 2139566671913101453}
+  - component: {fileID: 4732300423771944402}
+  - component: {fileID: 3922264584702426939}
   m_Layer: 0
   m_Name: FryStation
   m_TagString: Untagged
@@ -32,8 +70,8 @@ Transform:
   m_Children:
   - {fileID: 7315213713656269643}
   - {fileID: 7075324987653588752}
-  - {fileID: 1304626621683268753}
-  - {fileID: 7586401565942956734}
+  - {fileID: 4374554652288106669}
+  - {fileID: 1823642328837436652}
   - {fileID: 4133521295921441087}
   - {fileID: 6555018555790758158}
   - {fileID: 4586080975734426539}
@@ -43,6 +81,28 @@ Transform:
   - {fileID: 5096480489237930559}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &1596019800358341849
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664176203766987419}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7973043812085978211, guid: 83d75dbfabfff4944b50f51e3362f672, type: 3}
 --- !u!95 &7217594362896410864
 Animator:
   serializedVersion: 5
@@ -64,6 +124,60 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2139566671913101453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664176203766987419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276118c311dae9c4996e2777bc8b341c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  functionalObjectSO: {fileID: 0}
+  signalMat:
+  - {fileID: 2100000, guid: db242cfef2a618a41b21c7f4e794a1fe, type: 2}
+  - {fileID: 2100000, guid: 99bb793ee53a4f646a676df53db25439, type: 2}
+  fryingRecipeSOArray:
+  - {fileID: 11400000, guid: a30ad4901735a684fa356905e17519a9, type: 2}
+  burningRecipeSOArray:
+  - {fileID: 11400000, guid: b4fc490522afa1545a83c88faa2f22dc, type: 2}
+  fryBasketGroup:
+  - {fileID: 3555473468787457136}
+  - {fileID: 5333725750969975391}
+  fryValve: {fileID: 2928168336554008841}
+  fryKnob: {fileID: 4078820462484073587}
+  frySignal: {fileID: 4666402364945547758}
+--- !u!114 &4732300423771944402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664176203766987419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &3922264584702426939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664176203766987419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7fc3fa4cb7aa4749a4969a97c9dde21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableObject: {fileID: 2139566671913101453}
 --- !u!1 &1411939402090455388
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,6 +189,10 @@ GameObject:
   - component: {fileID: 1303336378223382660}
   - component: {fileID: 299601762044925871}
   - component: {fileID: 4179225457083727266}
+  - component: {fileID: 5718558729420025345}
+  - component: {fileID: 2928168336554008841}
+  - component: {fileID: 2134239902694636438}
+  - component: {fileID: 610736719840777527}
   m_Layer: 0
   m_Name: FryValve
   m_TagString: Untagged
@@ -147,6 +265,67 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5718558729420025345
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411939402090455388}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.05284292, y: 0.032521263, z: 0.05284638}
+  m_Center: {x: 0.0000000018626451, y: 0.016257405, z: 0.000012050385}
+--- !u!114 &2928168336554008841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411939402090455388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41838c6c8158b454ab7fccc0c0467277, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2134239902694636438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411939402090455388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &610736719840777527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411939402090455388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7fc3fa4cb7aa4749a4969a97c9dde21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableObject: {fileID: 2928168336554008841}
 --- !u!1 &2092553364950452420
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,7 +336,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3876390176812402869}
   m_Layer: 0
-  m_Name: LeftValve (1)
+  m_Name: RightValve
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -428,6 +607,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &4660036985973102939
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7626277364562898625}
+  m_Layer: 0
+  m_Name: DryingStatePosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7626277364562898625
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4660036985973102939}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.114, y: 0.752, z: 0.026}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1823642328837436652}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4666402364945547758
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,6 +732,10 @@ GameObject:
   - component: {fileID: 9007882581255084507}
   - component: {fileID: 1186957652515259713}
   - component: {fileID: 6277277619716106245}
+  - component: {fileID: 444540815988697555}
+  - component: {fileID: 4078820462484073587}
+  - component: {fileID: 5189836222281912769}
+  - component: {fileID: 4196418039831458923}
   m_Layer: 0
   m_Name: FryKnob
   m_TagString: Untagged
@@ -594,6 +808,129 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &444540815988697555
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4796615099638181835}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.05055976, y: 0.021544214, z: 0.05055991}
+  m_Center: {x: 0.00000036042184, y: 0.010746308, z: -0.0000039553274}
+--- !u!114 &4078820462484073587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4796615099638181835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41838c6c8158b454ab7fccc0c0467277, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5189836222281912769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4796615099638181835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &4196418039831458923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4796615099638181835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7fc3fa4cb7aa4749a4969a97c9dde21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableObject: {fileID: 4078820462484073587}
+--- !u!1 &4837907112795628078
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7830649101879462771}
+  m_Layer: 0
+  m_Name: FryingStatePosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7830649101879462771
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4837907112795628078}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.114, y: 0.692, z: 0.054}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1823642328837436652}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5149045886728767701
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8429822233957599755}
+  m_Layer: 0
+  m_Name: DryingStatePosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8429822233957599755
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5149045886728767701}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.338, y: 0.752, z: 0.026}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4374554652288106669}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5183824639205383280
 GameObject:
   m_ObjectHideFlags: 0
@@ -609,7 +946,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7075324987653588752
 Transform:
   m_ObjectHideFlags: 0
@@ -659,6 +996,71 @@ Transform:
   - {fileID: 9007882581255084507}
   m_Father: {fileID: 8934782787888334105}
   m_LocalEulerAnglesHint: {x: 80.6, y: 0, z: 0}
+--- !u!1 &5645076418285405719
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1823642328837436652}
+  m_Layer: 0
+  m_Name: FryBasketController (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1823642328837436652
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5645076418285405719}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7830649101879462771}
+  - {fileID: 7626277364562898625}
+  - {fileID: 7586401565942956734}
+  m_Father: {fileID: 8934782787888334105}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5720806985617077220
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8920067994762638480}
+  m_Layer: 0
+  m_Name: FryingStatePosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8920067994762638480
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5720806985617077220}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.338, y: 0.692, z: 0.054}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4374554652288106669}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5780655008192986921
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,7 +1073,7 @@ GameObject:
   - component: {fileID: 3820606373628715391}
   - component: {fileID: 731270884694087711}
   m_Layer: 0
-  m_Name: LeftSignal (1)
+  m_Name: RightSignal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -751,6 +1153,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7315213713656269643}
+  - component: {fileID: 7387291693017972786}
   m_Layer: 0
   m_Name: LeftOil
   m_TagString: Untagged
@@ -767,7 +1170,7 @@ Transform:
   m_GameObject: {fileID: 6352428761123907655}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.245, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -775,6 +1178,18 @@ Transform:
   - {fileID: 3796776632354663814}
   m_Father: {fileID: 8934782787888334105}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7387291693017972786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6352428761123907655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41838c6c8158b454ab7fccc0c0467277, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6514476600767723370
 GameObject:
   m_ObjectHideFlags: 0
@@ -817,7 +1232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6555018555790758158}
   m_Layer: 0
-  m_Name: LeftKnob (1)
+  m_Name: RightKnob
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -845,12 +1260,24 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 8934782787888334105}
+    m_TransformParent: {fileID: 1823642328837436652}
     m_Modifications:
     - target: {fileID: 139852403172282983, guid: 1fc529d96d3eaba49acdee511d74f4b7, type: 3}
       propertyPath: m_Name
       value: FryBasket (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5207964425063808708, guid: 1fc529d96d3eaba49acdee511d74f4b7, type: 3}
+      propertyPath: fryStation
+      value: 
+      objectReference: {fileID: 2139566671913101453}
+    - target: {fileID: 5207964425063808708, guid: 1fc529d96d3eaba49acdee511d74f4b7, type: 3}
+      propertyPath: dryingStateTransform
+      value: 
+      objectReference: {fileID: 7626277364562898625}
+    - target: {fileID: 5207964425063808708, guid: 1fc529d96d3eaba49acdee511d74f4b7, type: 3}
+      propertyPath: fryingStateTransform
+      value: 
+      objectReference: {fileID: 7830649101879462771}
     - target: {fileID: 7713271177788571173, guid: 1fc529d96d3eaba49acdee511d74f4b7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.114
@@ -869,15 +1296,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7713271177788571173, guid: 1fc529d96d3eaba49acdee511d74f4b7, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7713271177788571173, guid: 1fc529d96d3eaba49acdee511d74f4b7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7713271177788571173, guid: 1fc529d96d3eaba49acdee511d74f4b7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7713271177788571173, guid: 1fc529d96d3eaba49acdee511d74f4b7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -896,6 +1323,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1fc529d96d3eaba49acdee511d74f4b7, type: 3}
+--- !u!114 &5333725750969975391 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5207964425063808708, guid: 1fc529d96d3eaba49acdee511d74f4b7, type: 3}
+  m_PrefabInstance: {fileID: 163074353178082459}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa92c9c96c6dce44caf7f986963f3659, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7586401565942956734 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7713271177788571173, guid: 1fc529d96d3eaba49acdee511d74f4b7, type: 3}
@@ -1155,12 +1593,24 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 8934782787888334105}
+    m_TransformParent: {fileID: 4374554652288106669}
     m_Modifications:
     - target: {fileID: 139852403172282983, guid: 1fc529d96d3eaba49acdee511d74f4b7, type: 3}
       propertyPath: m_Name
       value: FryBasket
       objectReference: {fileID: 0}
+    - target: {fileID: 5207964425063808708, guid: 1fc529d96d3eaba49acdee511d74f4b7, type: 3}
+      propertyPath: fryStation
+      value: 
+      objectReference: {fileID: 2139566671913101453}
+    - target: {fileID: 5207964425063808708, guid: 1fc529d96d3eaba49acdee511d74f4b7, type: 3}
+      propertyPath: dryingStateTransform
+      value: 
+      objectReference: {fileID: 8429822233957599755}
+    - target: {fileID: 5207964425063808708, guid: 1fc529d96d3eaba49acdee511d74f4b7, type: 3}
+      propertyPath: fryingStateTransform
+      value: 
+      objectReference: {fileID: 8920067994762638480}
     - target: {fileID: 7713271177788571173, guid: 1fc529d96d3eaba49acdee511d74f4b7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.338
@@ -1179,15 +1629,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7713271177788571173, guid: 1fc529d96d3eaba49acdee511d74f4b7, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7713271177788571173, guid: 1fc529d96d3eaba49acdee511d74f4b7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7713271177788571173, guid: 1fc529d96d3eaba49acdee511d74f4b7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7713271177788571173, guid: 1fc529d96d3eaba49acdee511d74f4b7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1211,3 +1661,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7713271177788571173, guid: 1fc529d96d3eaba49acdee511d74f4b7, type: 3}
   m_PrefabInstance: {fileID: 8724031326705566388}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3555473468787457136 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5207964425063808708, guid: 1fc529d96d3eaba49acdee511d74f4b7, type: 3}
+  m_PrefabInstance: {fileID: 8724031326705566388}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa92c9c96c6dce44caf7f986963f3659, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

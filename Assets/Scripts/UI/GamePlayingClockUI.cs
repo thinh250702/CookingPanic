@@ -8,10 +8,17 @@ public class GamePlayingClockUI : MonoBehaviour
 {
     [SerializeField] private Image timerImage;
     [SerializeField] private TextMeshProUGUI timerText;
+    [SerializeField] private TextMeshProUGUI dateText;
+
+    private string[] months = { "Jan", "Feb", "Mar",
+                                "Apr", "May", "Jun",
+                                "Jul", "Aug", "Sep",
+                                "Oct", "Nov", "Dec" };
 
     private void Start() {
         timerText.text = "00:00";
         timerImage.fillAmount = 0;
+        dateText.text = $"DATE: {GameHandler.Instance.levelDate.Day.ToString("D2")} {months[GameHandler.Instance.levelDate.Month - 1].ToUpper()}";
     }
 
     private void Update() {

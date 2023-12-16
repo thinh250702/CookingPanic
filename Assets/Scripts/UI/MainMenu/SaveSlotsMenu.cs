@@ -11,6 +11,7 @@ public class SaveSlotsMenu : MonoBehaviour
 
     [Header("Menu Navigation")]
     [SerializeField] private MainMenu mainMenu;
+    [SerializeField] private InputNameMenu inputNameMenu;
 
     [Header("Menu Buttons")]
     [SerializeField] private Button loadButton;
@@ -33,7 +34,7 @@ public class SaveSlotsMenu : MonoBehaviour
     private bool isLoadGame = false;
 
     private void Start() {
-        gameObject.SetActive(false);
+        HideMenu();
         ResetSlotsVisual();
     }
 
@@ -85,13 +86,14 @@ public class SaveSlotsMenu : MonoBehaviour
             }
             // slot has no data
             else {
+                
                 Debug.Log("Ready to Start New Game!");
                 confirmPopupUI.Show(
                 // function to execute if we select 'yes'
                 () => {
                     DataPersistenceManager.Instance.ChangeSelectedProfileId(saveSlot.GetProfileId());
-                    DataPersistenceManager.Instance.NewGame();
-                    SaveGameAndLoadScene();
+                    inputNameMenu.ShowMenu();
+                    HideMenu();
                 },
                 // function to execute if we select 'cancel'
                 () => {
@@ -137,8 +139,8 @@ public class SaveSlotsMenu : MonoBehaviour
         // function to execute if we select 'yes'
         () => {
             DataPersistenceManager.Instance.ChangeSelectedProfileId(this.selectedSaveSlot.GetProfileId());
-            DataPersistenceManager.Instance.NewGame();
-            SaveGameAndLoadScene();
+            inputNameMenu.ShowMenu();
+            HideMenu();
         },
         // function to execute if we select 'cancel'
         () => {

@@ -11,7 +11,6 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 {
     [SerializeField] private MenuButtonController buttonsController;
     
-
     private bool isDisable = false;
     public Image background;
     public TextMeshProUGUI buttonText;

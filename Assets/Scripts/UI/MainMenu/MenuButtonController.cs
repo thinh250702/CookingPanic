@@ -16,6 +16,10 @@ public class MenuButtonController : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI buttonDescription;
 
+    private void OnEnable() {
+        ResetButtons();
+    }
+
     public void OnButtonEnter(MenuButton button) {
         ResetButtons();
         button.background.color = buttonActive;

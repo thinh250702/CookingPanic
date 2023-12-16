@@ -77,7 +77,9 @@ public class PickableObject : InteractableObject {
         StartCoroutine(MoveToSpot(transform, dropPosition, rotation));
         SetObjectParent(parentObject);
         if (parentObject is Trashbin) {
-            GetComponent<MeshCollider>().convex = true;
+            if (TryGetComponent<MeshCollider>(out MeshCollider meshCollider)) {
+                meshCollider.convex = true;
+            }
             StartCoroutine(ActivateRigibody());
         } else {
             StartCoroutine(DeactivateRigibody());

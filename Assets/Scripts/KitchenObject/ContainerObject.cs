@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class ContainerObject : PickableObject, IParentObject {
 
+    // event to play sound effect
+    public static event EventHandler OnAnyObjectPlacedHere;
+
     [SerializeField] protected Transform parentObjectTransform;
     [SerializeField] protected ContainerObjectSO containerObjectSO;
 
@@ -20,6 +23,10 @@ public class ContainerObject : PickableObject, IParentObject {
 
     public void AddChildrenObject(PickableObject pickableObject) {
         holdingObjectList.Add(pickableObject);
+
+        if (pickableObject != null) {
+            OnAnyObjectPlacedHere?.Invoke(this, EventArgs.Empty);
+        }
     }
 
     public List<PickableObject> GetChildrenObject() {

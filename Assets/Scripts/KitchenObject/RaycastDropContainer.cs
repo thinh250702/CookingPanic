@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class RaycastDropContainer : ContainerObject {
 
@@ -23,13 +25,14 @@ public class RaycastDropContainer : ContainerObject {
             PickableObject playerHoldingObject = player.GetChildrenObject()[0];
             RaycastHit playerRaycastHit = player.GetPlayerRaycastHit();
             Vector3 dropPosition = new Vector3(playerRaycastHit.point.x, playerRaycastHit.point.y, playerRaycastHit.point.z);
+
             switch (type) {
                 case Type.MetalTray:
                     // Only allow ingredient
                     if (playerHoldingObject is IngredientObject) {
                         playerHoldingObject.NormalDropObject(this, dropPosition, Quaternion.identity);
                     } else {
-                        PopupMessageUI.Instance.SetMessage("Only allow ingredient!");
+                        PopupMessageUI.Instance.SetMessage("Metal Tray only allow ingredient!");
                     }
                     break;
                 case Type.ServingTray:
@@ -37,7 +40,7 @@ public class RaycastDropContainer : ContainerObject {
                     if (playerHoldingObject is FoodPackage) {
                         playerHoldingObject.DropConcaveContainer(this, dropPosition, Quaternion.identity);
                     } else {
-                        PopupMessageUI.Instance.SetMessage("Only allow food package!");
+                        PopupMessageUI.Instance.SetMessage("Serving Tray only allow food package!");
                     }
                     break;
                 case Type.AssemblyTable:

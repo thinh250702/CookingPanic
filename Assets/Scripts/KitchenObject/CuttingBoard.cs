@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class CuttingBoard : ContainerObject, IHasProgress {
 
+    public static event EventHandler OnAnyCut;
     public event EventHandler<EventArgs> OnCut;
     public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
 
@@ -52,16 +53,16 @@ public class CuttingBoard : ContainerObject, IHasProgress {
                     IngredientObject playerIngredient = player.GetChildrenObject()[0] as IngredientObject;
                     if (HasRecipeWithInput(playerIngredient.GetIngredientObjectSO())) {
                         // Ingredient can be cut
+                        PopupMessageUI.Instance.SetMessage("Pick a knife!");
                         playerIngredient.NormalDropObject(this, this.GetObjectFollowTransform().position, Quaternion.identity);
                         cuttingProgress = 0;
                         cuttingObject = playerIngredient;
                         CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipeSOWithInput(cuttingObject.GetIngredientObjectSO());
-                        Debug.Log("Can be cut");
                         OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs {
                             progressNormalized = (float)cuttingProgress / cuttingRecipeSO.cuttingProgressMax
                         });
                     } else {
-                        Debug.Log("Can't be cut!");
+                        PopupMessageUI.Instance.SetMessage("Can't cut this ingredient!");
                     }
                 }
                 else {
@@ -75,6 +76,7 @@ public class CuttingBoard : ContainerObject, IHasProgress {
             //There is a KitchenObject here
             if (player.GetChildrenObject()[0] is CuttingKnife) {
                 if (!isEnter) {
+                    PopupMessageUI.Instance.SetMessage("Press E to cut!");
                     isEnter = true;
                 } else {
                     isEnter = false;
@@ -86,8 +88,10 @@ public class CuttingBoard : ContainerObject, IHasProgress {
     public override void InteractAlternate(Player player) {
         if (isEnter) {
             cuttingProgress++;
-            Debug.Log("Cutting progress: " + cuttingProgress);
+
             OnCut?.Invoke(this, EventArgs.Empty);
+            OnAnyCut?.Invoke(this, EventArgs.Empty);
+
             CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipeSOWithInput(cuttingObject.GetIngredientObjectSO());
 
             OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs {
@@ -97,7 +101,7 @@ public class CuttingBoard : ContainerObject, IHasProgress {
             if (cuttingProgress >= cuttingRecipeSO.cuttingProgressMax) {
                 IngredientObjectSO outputObjectSO = GetOutputForInput(cuttingObject.GetIngredientObjectSO());
                 cuttingObject.DestroySelf();
-                IngredientObject.SpawnKitchenObject(outputObjectSO, this, this.GetObjectFollowTransform());
+                IngredientObject.SpawnKitchenObject(outputObjectSO, this, this.GetObjectFollowTransform(), Quaternion.identity);
                 isEnter = false;
                 playerHoldPoint.localPosition = originalPosition;
             }

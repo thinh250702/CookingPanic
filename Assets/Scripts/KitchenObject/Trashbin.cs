@@ -2,10 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 using static UnityEditor.Progress;
 
 public class Trashbin : ContainerObject
 {
+    public static event EventHandler OnAnyObjectTrashed;
+
     private Vector3 dropPoint;
     private void Start() {
         dropPoint = new Vector3(GetObjectFollowTransform().position.x,
@@ -14,20 +17,25 @@ public class Trashbin : ContainerObject
     }
     public override void Interact(Player player) {
         if (player.HasChildrenObject()) {
-            if (player.GetChildrenObject()[0] is RaycastDropContainer) {
-                RaycastDropContainer metalTray = player.GetChildrenObject()[0] as RaycastDropContainer;
-                for (int i = metalTray.GetChildrenObject().Count - 1; i >= 0; i--) {
-                    metalTray.GetChildrenObject()[i].NormalDropObject(this, dropPoint, Quaternion.identity);
-                }
-            } else if (player.GetChildrenObject()[0] is FoodPackage) {
-                FoodPackage box = player.GetChildrenObject()[0] as FoodPackage;
-                for (int i = box.GetChildrenObject().Count - 1; i >= 0; i--) {
-                    box.GetChildrenObject()[i].NormalDropObject(this, dropPoint, Quaternion.identity);
-                }
-                box.DropConcaveContainer(this, dropPoint, Quaternion.identity);
-            } else {
-                player.GetChildrenObject()[0].NormalDropObject(this, dropPoint, Quaternion.identity);
+
+            switch (player.GetChildrenObject()[0]) {
+                case RaycastDropContainer container:
+                    for (int i = container.GetChildrenObject().Count - 1; i >= 0; i--) {
+                        container.GetChildrenObject()[i].NormalDropObject(this, dropPoint, Quaternion.identity);
+                    }
+                    break;
+                case FoodPackage foodPackage:
+                    for (int i = foodPackage.GetChildrenObject().Count - 1; i >= 0; i--) {
+                        foodPackage.GetChildrenObject()[i].NormalDropObject(this, dropPoint, Quaternion.identity);
+                    }
+                    foodPackage.DropConcaveContainer(this, dropPoint, Quaternion.identity);
+                    break;
+                default:
+                    player.GetChildrenObject()[0].NormalDropObject(this, dropPoint, Quaternion.identity);
+                    break;
             }
+
+            OnAnyObjectTrashed?.Invoke(this, EventArgs.Empty);
             StartCoroutine(DestroyChildrenObject(5f));
         }
     }

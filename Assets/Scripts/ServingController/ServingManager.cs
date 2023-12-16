@@ -20,6 +20,10 @@ public class ServingManager : MonoBehaviour {
     }
     public event EventHandler<OnStarChangedEventArgs> OnStarChanged;
 
+    // event to play sound effect
+    public event EventHandler OnServingSuccess;
+    public event EventHandler OnServingFailed;
+
     [SerializeField] private RecipeListSO recipeListSO;
     [SerializeField] private CustomerListSO customerListSO;
     [SerializeField] private List<ServingSlot> servingSlotList;
@@ -83,11 +87,14 @@ public class ServingManager : MonoBehaviour {
                 }
             }
             if (trayItemsMatchesRecipe) {
+                OnServingSuccess?.Invoke(this, EventArgs.Empty);
                 return true;
             } else {
+                OnServingFailed?.Invoke(this, EventArgs.Empty);
                 return false;
             }
         }
+        OnServingFailed?.Invoke(this, EventArgs.Empty);
         return false;
     }
 

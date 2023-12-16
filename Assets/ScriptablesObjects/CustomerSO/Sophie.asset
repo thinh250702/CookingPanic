@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c51fd00dc036a584ebcc28068e416afe, type: 3}
+  m_Name: Sophie
+  m_EditorClassIdentifier: 
+  customerName: Sophie
+  gender: 1
+  prefab: {fileID: 569807995853953113, guid: 2f8c00d54962c724fac5098fa16672cd, type: 3}
+  waitingTime: 60
+  maxTip: 14

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   customerName: Brian
   prefab: {fileID: 9064459288014854899, guid: 148354baeaf71ed4b93ae3b02208d3d4, type: 3}
-  waitingTime: 5
-  maxTip: 2
+  waitingTime: 60
+  maxTip: 5

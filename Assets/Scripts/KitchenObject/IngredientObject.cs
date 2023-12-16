@@ -27,11 +27,11 @@ public class IngredientObject : PickableObject {
                     Vector3 dropPoint = new Vector3(containerTransform.position.x, containerTransform.position.y + .2f, containerTransform.position.z);
                     this.NormalDropObject(container, dropPoint, Quaternion.identity);
                 } else {
-                    PopupMessageUI.Instance.SetMessage("Can not pick ingredient!");
+                    PopupMessageUI.Instance.SetMessage("Can't pick ingredient!");
                 }
             } else {
                 // Player is holding an ingredient - do nothing
-                PopupMessageUI.Instance.SetMessage("Can not pick ingredient!");
+                PopupMessageUI.Instance.SetMessage("Can't pick ingredient!");
             }
         } else {
             // Player is not carrying anything - pickup that ingredient
@@ -39,8 +39,8 @@ public class IngredientObject : PickableObject {
         }
     }
 
-    public static IngredientObject SpawnKitchenObject(IngredientObjectSO ingredientObjectSO, IParentObject kitchenObjectParent, Transform spawnTransform) {
-        Transform kitchenObjectTransform = Instantiate(ingredientObjectSO.prefab, spawnTransform.position, Quaternion.identity);
+    public static IngredientObject SpawnKitchenObject(IngredientObjectSO ingredientObjectSO, IParentObject kitchenObjectParent, Transform spawnTransform, Quaternion rotation) {
+        Transform kitchenObjectTransform = Instantiate(ingredientObjectSO.prefab, spawnTransform.position, rotation);
         IngredientObject kitchenObject = kitchenObjectTransform.GetComponent<IngredientObject>();
         kitchenObject.SetObjectParent(kitchenObjectParent);
         return kitchenObject;

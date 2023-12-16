@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3963931178183633528}
   - component: {fileID: 6233673669780463560}
   - component: {fileID: 4483254573786365008}
+  - component: {fileID: 4295872314613010927}
   m_Layer: 0
   m_Name: BaseCustomer
   m_TagString: Untagged
@@ -49,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   customerSO: {fileID: 0}
   customerVisual: {fileID: 0}
+  isArrived: 0
 --- !u!136 &3963931178183633528
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -100,3 +102,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableObject: {fileID: 4582579178967081181}
+--- !u!114 &4295872314613010927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6067215266059738645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ee97a884fdaabf4ebd301c7aff0c44a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

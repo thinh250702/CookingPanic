@@ -32,7 +32,26 @@ public class ProgressBarUI : MonoBehaviour
     }
 
     private void SetInfo() {
-        if (hasProgressObject is StockHolderObject) {
+        switch (hasProgressObject) {
+            case StockHolderObject stockHolderObject:
+                itemNameText.text = stockHolderObject.GetStockObject().GetStockObjectSO().stockName;
+                itemImage.sprite = stockHolderObject.GetStockObject().GetStockObjectSO().sprite;
+                break;
+            case CuttingBoard cuttingBoard:
+                itemNameText.text = cuttingBoard.GetCuttingObject().GetIngredientObjectSO().ingredientName;
+                itemImage.sprite = cuttingBoard.GetCuttingObject().GetIngredientObjectSO().sprite;
+                break;
+            case GrillSlot grillSlot:
+                itemNameText.text = grillSlot.GetFryingObject().GetIngredientObjectSO().ingredientName;
+                itemImage.sprite = grillSlot.GetFryingObject().GetIngredientObjectSO().sprite;
+                break;
+            case FryBasket fryBasket:
+                itemNameText.text = fryBasket.GetFryingObject().GetIngredientObjectSO().ingredientName;
+                itemImage.sprite = fryBasket.GetFryingObject().GetIngredientObjectSO().sprite;
+                break;
+        }
+
+        /*if (hasProgressObject is StockHolderObject) {
             StockHolderObject stockHolderObject = hasProgressObject as StockHolderObject;
             itemNameText.text = stockHolderObject.GetStockObject().GetStockObjectSO().stockName;
             itemImage.sprite = stockHolderObject.GetStockObject().GetStockObjectSO().sprite;
@@ -46,7 +65,7 @@ public class ProgressBarUI : MonoBehaviour
             GrillSlot grillSlot = hasProgressObject as GrillSlot;
             itemNameText.text = grillSlot.GetFryingObject().GetIngredientObjectSO().ingredientName;
             itemImage.sprite = grillSlot.GetFryingObject().GetIngredientObjectSO().sprite;
-        }
+        }*/
 
     }
 

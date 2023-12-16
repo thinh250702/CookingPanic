@@ -5,9 +5,10 @@ using UnityEngine;
 using UnityEngine.Rendering;
 
 public class Customer : InteractableObject {
-    public CustomerSO customerSO;
-    public GameObject customerVisual;
+    [SerializeField] private CustomerSO customerSO;
+    [SerializeField] private GameObject customerVisual;
 
+    public event EventHandler<OnOrderCompletedEventArgs> OnOrderCompleted;
     public class OnOrderCompletedEventArgs : EventArgs {
         public int completedState;
         public float totalOrderPrice;
@@ -15,11 +16,13 @@ public class Customer : InteractableObject {
     }
 
     public event EventHandler<EventArgs> OnCustomerLeaving;
-
     public event EventHandler<EventArgs> OnOrderSpawned;
-    public event EventHandler<OnOrderCompletedEventArgs> OnOrderCompleted;
-
     public event EventHandler<EventArgs> OnStateChanged;
+
+    public event EventHandler<OnPlayingSoundEventArgs> OnPlayingSound;
+    public class OnPlayingSoundEventArgs : EventArgs {
+        public string soundName;
+    }
 
     public enum State {
         Walking,
@@ -29,7 +32,7 @@ public class Customer : InteractableObject {
         Bad,
     }
 
-    public ServingSlot CurrentSlot { get; set; }
+    public ServingSlot currentSlot { get; set; }
 
     private Animator animator;
     private bool hasOrdered;
@@ -85,6 +88,10 @@ public class Customer : InteractableObject {
                     // The customer has arrived -> Set state to Idle
                     state = State.Idle;
                     animator.SetBool(isArrivedHashed, true);
+                    // TODO - play hello sfx
+                    OnPlayingSound?.Invoke(this, new OnPlayingSoundEventArgs {
+                        soundName = "hello"
+                    });
                 } else {
                     animator.SetBool(isArrivedHashed, false);
                     if (animator.GetAnimatorTransitionInfo(0).IsName("Customer_Idle -> Customer_Walking")) {
@@ -148,6 +155,12 @@ public class Customer : InteractableObject {
                     animator.SetTrigger(badHashed);
                     isFinished = true;
                     state = State.Idle;
+
+                    // TODO - play disgust sfx
+                    OnPlayingSound?.Invoke(this, new OnPlayingSoundEventArgs {
+                        soundName = "disgust"
+                    });
+
                     OnOrderCompleted?.Invoke(this, new OnOrderCompletedEventArgs {
                         completedState = 0,
                         totalOrderPrice = 0,
@@ -179,13 +192,19 @@ public class Customer : InteractableObject {
             if (player.HasChildrenObject() && player.GetChildrenObject()[0] is ContainerObject) {
                 ContainerObject container = player.GetChildrenObject()[0] as ContainerObject;
                 if (container.GetContainerObjectSO() == ServingManager.Instance.validObjectSO) {
-                    container.DropConcaveContainer(CurrentSlot, CurrentSlot.transform.position, Quaternion.identity);
+                    container.DropConcaveContainer(currentSlot, currentSlot.transform.position, Quaternion.identity);
                     if (ServingManager.Instance.ServeOrder(container, orderRecipeSOList)) {
                         // Served correct order
                         Debug.Log("Player delivered the correct order!");
                         switch (state) {
                             case State.Perfect:
                                 animator.SetTrigger(perfectHashed);
+
+                                // TODO - play happy sfx
+                                OnPlayingSound?.Invoke(this, new OnPlayingSoundEventArgs {
+                                    soundName = "happy"
+                                });
+
                                 OnOrderCompleted?.Invoke(this, new OnOrderCompletedEventArgs {
                                     completedState = 3,
                                     totalOrderPrice = this.totalOrderPrice,
@@ -194,6 +213,12 @@ public class Customer : InteractableObject {
                                 break;
                             case State.Good:
                                 animator.SetTrigger(goodHashed);
+
+                                // TODO - play disappoint sfx
+                                OnPlayingSound?.Invoke(this, new OnPlayingSoundEventArgs {
+                                    soundName = "disappoint"
+                                });
+
                                 OnOrderCompleted?.Invoke(this, new OnOrderCompletedEventArgs {
                                     completedState = 2,
                                     totalOrderPrice = this.totalOrderPrice,
@@ -202,6 +227,12 @@ public class Customer : InteractableObject {
                                 break;
                             case State.Bad:
                                 animator.SetTrigger(badHashed);
+
+                                // TODO - play disgust sfx
+                                OnPlayingSound?.Invoke(this, new OnPlayingSoundEventArgs {
+                                    soundName = "disgust"
+                                });
+
                                 OnOrderCompleted?.Invoke(this, new OnOrderCompletedEventArgs {
                                     completedState = 1,
                                     totalOrderPrice = this.totalOrderPrice,
@@ -212,6 +243,12 @@ public class Customer : InteractableObject {
                     } else {
                         // Served incorrect order
                         Debug.Log("Player delivered the incorrect order!");
+
+                        // TODO - play disgust sfx
+                        OnPlayingSound?.Invoke(this, new OnPlayingSoundEventArgs {
+                            soundName = "disgust"
+                        });
+
                         OnOrderCompleted?.Invoke(this, new OnOrderCompletedEventArgs {
                             completedState = 0,
                             totalOrderPrice = 0,

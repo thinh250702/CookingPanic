@@ -28,10 +28,9 @@ public class ServingManagerUI : MonoBehaviour
         GameObject orderRowChildren = orderContainer.transform.GetChild(e.slotIndex).gameObject;
         var slot = ServingManager.Instance.GetServingSlotList()[e.slotIndex];
         if (!e.isCompleted) {
-            if (slot.CurrentCustomer.GetCustomerOrderList().Count > 0) {
-                /*orderNumberText.text = $"Slot {e.slotIndex + 1}";*/
+            if (slot.currentCustomer.GetCustomerOrderList().Count > 0) {
                 orderRowChildren.gameObject.SetActive(true);
-                orderRowChildren.GetComponent<ServingManagerSingleUI>().SetRecipeSO(slot.CurrentCustomer.GetCustomerOrderList());
+                orderRowChildren.GetComponent<ServingManagerSingleUI>().SetRecipeSO(slot.currentCustomer.GetCustomerOrderList());
             }
         } else {
             orderRowChildren.gameObject.SetActive(false);

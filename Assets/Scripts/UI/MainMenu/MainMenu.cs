@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,14 +9,45 @@ public class MainMenu : MonoBehaviour
 {
     [Header("Menu Navigation")]
     [SerializeField] private SaveSlotsMenu saveSlotsMenu;
+    [SerializeField] private OptionsMenu optionsMenu;
 
     [Header("Menu Buttons")]
     [SerializeField] private Button continueButton;
     [SerializeField] private Button newGameButton;
     [SerializeField] private Button loadGameButton;
+    [SerializeField] private Button optionsButton;
     [SerializeField] private Button quitButton;
 
+    [SerializeField] private TextMeshProUGUI welcomeText;
+    private void Awake() {
+        continueButton.onClick.AddListener(() => {
+            Debug.Log("ContinueGame");
+            // save the game anytime before loading a new scene
+            DataPersistenceManager.Instance.SaveGame();
+            // load the next scene - which will in turn load the game because of OnSceneLoaded() in the DataPersistenceManager
+            SceneLoader.Load(SceneLoader.Scene.SelectionScene);
+        });
+        newGameButton.onClick.AddListener(() => {
+            Debug.Log("NewGame");
+            saveSlotsMenu.ShowMenu(false);
+            this.HideMenu();
+        });
+        loadGameButton.onClick.AddListener(() => {
+            Debug.Log("LoadGame");
+            saveSlotsMenu.ShowMenu(true);
+            this.HideMenu();
+        });
+        optionsButton.onClick.AddListener(() => {
+            optionsMenu.ShowMenu();
+            HideMenu();
+        });
+        quitButton.onClick.AddListener(() => {
+            Application.Quit();
+        });
+    }
+
     private void Start() {
+        welcomeText.text = "";
         DisableButtonsDependingOnData();
     }
 
@@ -24,43 +56,16 @@ public class MainMenu : MonoBehaviour
             Debug.Log("No game data");
             continueButton.interactable = false;
             loadGameButton.interactable = false;
+            welcomeText.gameObject.SetActive(false);
         } else {
             Debug.Log("Has game data");
+            welcomeText.text = $"Welcome, {DataPersistenceManager.Instance.GetRecentlyPlayerName()}";
         }
     }
 
-    public void OnNewGameClicked() {
-        Debug.Log("NewGame");
-        saveSlotsMenu.ShowMenu(false);
-        this.HideMenu();
-    }
-
-    public void OnContinueGameClicked() {
-        Debug.Log("ContinueGame");
-        // save the game anytime before loading a new scene
-        DataPersistenceManager.Instance.SaveGame();
-        // load the next scene - which will in turn load the game because of 
-        // OnSceneLoaded() in the DataPersistenceManager
-        SceneLoader.Load(SceneLoader.Scene.SelectionScene);
-    }
-
-    public void OnLoadGameClicked() {
-        Debug.Log("LoadGame");
-        saveSlotsMenu.ShowMenu(true);
-        this.HideMenu();
-    }
-
-    public void OnQuitGameClicked() {
-        Application.Quit();
-    }
-
     public void ShowMenu() {
-        this.gameObject.SetActive(true);
         DisableButtonsDependingOnData();
-        /*
-        There is no saved data at all -> disable LoadGame and Continue
-        There more than one saved data -> enable Load and Continue
-         */
+        this.gameObject.SetActive(true);
     }
 
     public void HideMenu() {

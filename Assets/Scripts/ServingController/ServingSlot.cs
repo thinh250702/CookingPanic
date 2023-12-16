@@ -24,7 +24,7 @@ public class ServingSlot : ContainerObject {
     //private float waitingTimer;
     //private bool isArrived;
 
-    public Customer CurrentCustomer { get; set; }
+    public Customer currentCustomer { get; set; }
 
     private void Start() {
         customerListSO = ServingManager.Instance.GetCustomerListSO();   
@@ -33,21 +33,21 @@ public class ServingSlot : ContainerObject {
     private void Update() {
         if (!isEngage) {
             // There is no customer at the moment -> Spawn customer
-            if (CurrentCustomer == null) {
+            if (currentCustomer == null && !GameHandler.Instance.IsGameOver()) {
                 // Create customer randomly
                 this.currentCustomerSO = customerListSO.customerSOList[UnityEngine.Random.Range(0, customerListSO.customerSOList.Count)];
 
-                CurrentCustomer = InstantiateCustomer(); // Instantiate customer
-                CurrentCustomer.gameObject.SetActive(false); // Show the customer
+                currentCustomer = InstantiateCustomer(); // Instantiate customer
+                currentCustomer.gameObject.SetActive(false); // Show the customer/
                 StartCoroutine(CustomerArriving()); // Move customer from start point to end point
 
-                CurrentCustomer.CurrentSlot = this; // Set customer CurrentSlot to this slot
+                currentCustomer.currentSlot = this; // Set customer CurrentSlot to this slot
 
                 // Subscribe to Customer event
-                CurrentCustomer.OnCustomerLeaving += CurrentCustomer_OnCustomerLeaving; 
-                CurrentCustomer.OnOrderSpawned += CurrentCustomer_OnOrderSpawned;
-                CurrentCustomer.OnOrderCompleted += CurrentCustomer_OnOrderCompleted;
-                CurrentCustomer.OnStateChanged += CurrentCustomer_OnStateChanged;
+                currentCustomer.OnCustomerLeaving += CurrentCustomer_OnCustomerLeaving; 
+                currentCustomer.OnOrderSpawned += CurrentCustomer_OnOrderSpawned;
+                currentCustomer.OnOrderCompleted += CurrentCustomer_OnOrderCompleted;
+                currentCustomer.OnStateChanged += CurrentCustomer_OnStateChanged;
 
                 isEngage = true;
             }
@@ -62,7 +62,7 @@ public class ServingSlot : ContainerObject {
     }
 
     private void CurrentCustomer_OnStateChanged(object sender, EventArgs e) {
-        ServingManager.Instance.UpdateStarVisual(index, CurrentCustomer.GetStarNumberByState());
+        ServingManager.Instance.UpdateStarVisual(index, currentCustomer.GetStarNumberByState());
     }
 
     private void CurrentCustomer_OnOrderSpawned(object sender, EventArgs e) {
@@ -70,23 +70,23 @@ public class ServingSlot : ContainerObject {
     }
 
     private IEnumerator CustomerLeaving() {
-        /*Debug.Log($"{this.name}[{string.Join(",", this.GetChildrenObject())}]");*/
         if (HasChildrenObject()) {
             StartCoroutine(DestroyChildrenObject(0.01f));
         }
-        yield return CurrentCustomer.MoveCustomer(customerEndPoint.position, customerStartPoint.position, Quaternion.identity);
+        yield return currentCustomer.MoveCustomer(customerEndPoint.position, customerStartPoint.position, Quaternion.identity);
 
-        Destroy(CurrentCustomer.gameObject); // After the customer had moved to end point -> destroy that customer
+        Destroy(currentCustomer.gameObject); // After the customer had moved to end point -> destroy that customer
         ClearCustomer(); // Set the CurrentCustomer of this slot to null
 
         isEngage = false; // Ready to spawn new customer
     }
 
     private IEnumerator CustomerArriving() {
-        yield return new WaitForSeconds((float)UnityEngine.Random.Range(1, 30));
-        CurrentCustomer.gameObject.SetActive(true);
-        yield return CurrentCustomer.MoveCustomer(customerStartPoint.position, customerEndPoint.position, Quaternion.Euler(0, 180, 0));
-        CurrentCustomer.isArrived = true;
+        yield return new WaitForSeconds(UnityEngine.Random.Range(1, 10));
+        //yield return new WaitForSeconds(1f);
+        currentCustomer.gameObject.SetActive(true);
+        yield return currentCustomer.MoveCustomer(customerStartPoint.position, customerEndPoint.position, Quaternion.Euler(0, 180, 0));
+        currentCustomer.isArrived = true;
     }
 
     private void CurrentCustomer_OnCustomerLeaving(object sender, EventArgs e) {
@@ -94,7 +94,7 @@ public class ServingSlot : ContainerObject {
     }
 
     private void ClearCustomer() {
-        CurrentCustomer = null;
+        currentCustomer = null;
     }
 
     private Customer InstantiateCustomer() {

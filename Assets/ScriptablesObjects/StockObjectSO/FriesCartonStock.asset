@@ -15,5 +15,5 @@ MonoBehaviour:
   stockName: Fries Carton
   prefab: {fileID: 1491996937303329152, guid: cf4cf2dd536596b4fab13d710d659b7f, type: 3}
   quantity: 5
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 18bb7a46a652057478d88db3f1976295, type: 3}
   restockPrice: 5

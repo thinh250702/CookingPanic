@@ -8,6 +8,9 @@ using UnityEngine;
 public class Player : MonoBehaviour, IParentObject {
     public static Player Instance { get; private set; }
 
+    // event to play sound effect
+    public event EventHandler OnPickedSomething;
+
     public event EventHandler<EventArgs> OnPauseAction;
     public event EventHandler<OnSelectedObjectChangedEventArgs> OnSelectedObjectChanged;
     public class OnSelectedObjectChangedEventArgs : EventArgs {
@@ -70,6 +73,10 @@ public class Player : MonoBehaviour, IParentObject {
         }
     }
 
+    public bool IsWalking() {
+        return _input.move != Vector2.zero;
+    }
+
     private void HandlePauseGame() {
         if (_input.pause) {
             OnPauseAction?.Invoke(this, EventArgs.Empty);
@@ -119,6 +126,10 @@ public class Player : MonoBehaviour, IParentObject {
 
     public void AddChildrenObject(PickableObject pickableObject) {
         holdingObjectList.Add(pickableObject);
+
+        if (pickableObject != null) {
+            OnPickedSomething?.Invoke(this, EventArgs.Empty);
+        }
     }
 
     public void RemoveChildrenObject(PickableObject pickableObject) {

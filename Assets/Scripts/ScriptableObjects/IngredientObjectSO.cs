@@ -9,6 +9,7 @@ public class IngredientObjectSO : ScriptableObject, IEquatable<IngredientObjectS
     public Transform prefab;
     public Sprite sprite;
     public string description = "This is for description";
+    public float ingredientCost;
 
     public bool Equals(IngredientObjectSO other) {
         if (this.ingredientName == other.ingredientName) {

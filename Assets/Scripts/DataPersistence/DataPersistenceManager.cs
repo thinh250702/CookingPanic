@@ -5,8 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class DataPersistenceManager : MonoBehaviour
-{
+public class DataPersistenceManager : MonoBehaviour {
     [Header("Debugging")]
     [SerializeField] private bool disableDataPersistence = false;
     [SerializeField] private bool initializeDataIfNull = false;
@@ -49,13 +48,13 @@ public class DataPersistenceManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    public void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
-        if (scene.buildIndex == 1) {
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
+        if (scene.name == SceneLoader.Scene.SelectionScene.ToString()) {
             Debug.Log("LevelSelection is loaded!");
             Time.timeScale = 1f;
             Cursor.lockState = CursorLockMode.None;
         }
-        if (scene.buildIndex == 2) {
+        if (scene.name == SceneLoader.Scene.MainScene.ToString()) {
             Debug.Log("GameScene is loaded!");
             Cursor.lockState = CursorLockMode.Locked;
         }
@@ -63,8 +62,9 @@ public class DataPersistenceManager : MonoBehaviour
         LoadGame();
     }
 
-    public void NewGame() {
+    public void NewGame(string playerName) {
         this.playerData = new PlayerData();
+        this.playerData.playerName = playerName;
     }
 
     public void SaveGame() {
@@ -101,7 +101,7 @@ public class DataPersistenceManager : MonoBehaviour
 
         // start a new game if the data is null and we're configured to initialize data for debugging purposes
         if (playerData == null && initializeDataIfNull) {
-            NewGame();
+            NewGame("");
         }
 
         // if no data can be loaded, don't continue
@@ -142,6 +142,13 @@ public class DataPersistenceManager : MonoBehaviour
             this.selectedProfileId = testSelectedProfileId;
             Debug.LogWarning("Overrode selected profile id with test id: " + testSelectedProfileId);
         }
+    }
+
+    public string GetRecentlyPlayerName(){
+        PlayerData profileData = null;
+        Dictionary<string, PlayerData> profilesGameData = GetAllProfilesGameData();
+        profilesGameData.TryGetValue(dataHandler.GetMostRecentlyUpdatedProfileId(), out profileData);
+        return profileData.playerName;
     }
 
     public void DeleteProfileData(string profileId) {

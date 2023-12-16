@@ -31,7 +31,7 @@ public class PlaceSlot : ContainerObject
             if (container.GetContainerObjectSO() == validObjectSO) {
                 container.DropConcaveContainer(this, this.GetObjectFollowTransform().position, Quaternion.identity);
             } else {
-                Debug.Log("Cannot put object here");
+                PopupMessageUI.Instance.SetMessage("Can't place object here!");
             }
         } else {
             // Player is not carrying anything

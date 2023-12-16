@@ -13,6 +13,7 @@ public class DynamicCalendarUI : MonoBehaviour, IDataPersistence
     [Header("UI Components")]
     [SerializeField] private TextMeshProUGUI monthText;
     [SerializeField] private TextMeshProUGUI dayRecapText;
+    [SerializeField] private TextMeshProUGUI currentMoneyText;
     [SerializeField] private Transform dateContainer;
     [SerializeField] private Transform dateTemplate;
     [SerializeField] private Transform dayRecapUI;
@@ -34,8 +35,8 @@ public class DynamicCalendarUI : MonoBehaviour, IDataPersistence
     private int currYear = 2023;
     private int currMonth = 5;
 
-    private int currLevelDay = 1;
-    private int currLevelMonth = 1;
+    private int currLevelDay = -1;
+    private int currLevelMonth = -1;
 
     private string[] months = { "January", "February", "March", 
                                 "April", "May", "June", 
@@ -56,9 +57,9 @@ public class DynamicCalendarUI : MonoBehaviour, IDataPersistence
 
     private void Start() {
         dateTemplate.gameObject.SetActive(false);
-        activeCellGroup = new List<DynamicCalendarSingleUI>();
-
         monthText.text = months[currMonth - 1].ToUpper();
+        dayRecapText.text = $"DAY RECAP: {currLevelDay.ToString("D2")} {months[currLevelMonth - 1]}";
+        dayRecapUI.GetComponent<DayRecapUI>().SetDayRecapData(calendarData[months[currLevelMonth - 1]][currLevelDay - 1]);
         RenderCalendar();
     }
 
@@ -102,8 +103,6 @@ public class DynamicCalendarUI : MonoBehaviour, IDataPersistence
         return dictionary;
     }
 
-    
-
     private void SetCellVisual(DynamicCalendarSingleUI dayCell) {
         dayCell.dateText.text = dayCell.Day.ToString();
 
@@ -143,6 +142,8 @@ public class DynamicCalendarUI : MonoBehaviour, IDataPersistence
     }
 
     public void RenderCalendar() {
+        activeCellGroup = new List<DynamicCalendarSingleUI>();
+
         foreach (Transform child in dateContainer) {
             if (child == dateTemplate) continue;
             Destroy(child.gameObject);
@@ -212,7 +213,7 @@ public class DynamicCalendarUI : MonoBehaviour, IDataPersistence
         dayCell.background.color = hoverBackgroundColor;
         dayCell.dateText.color = hoverDayTextColor;
 
-        dayRecapText.text = $"DAY RECAP: {dayCell.Day} {months[dayCell.Month - 1]}";
+        dayRecapText.text = $"DAY RECAP: {dayCell.Day.ToString("D2")} {months[dayCell.Month - 1]}";
         dayRecapUI.GetComponent<DayRecapUI>().SetDayRecapData(dayCell.DayRecapData);
 
         // case: current cell - show the confirm box adn ready to start game
@@ -239,7 +240,11 @@ public class DynamicCalendarUI : MonoBehaviour, IDataPersistence
         foreach (DynamicCalendarSingleUI cell in activeCellGroup) {
             if (selectedCell != null && cell == selectedCell) { continue; }
             if (cell.background != null) {
-                cell.background.color = activeBackgroundColor;
+                if (!cell.DayRecapData.IsLevelEmpty()) {
+                    cell.background.color = completedBackgroundColor;
+                } else {
+                    cell.background.color = activeBackgroundColor;
+                }
                 cell.dateText.color = activeDayTextColor;
             }
         }
@@ -250,8 +255,11 @@ public class DynamicCalendarUI : MonoBehaviour, IDataPersistence
     }
 
     public void LoadData(PlayerData playerData) {
-        currLevelMonth = currMonth = playerData.currentMonth;
-        currLevelDay = playerData.currentDay;
+
+        currLevelMonth = currMonth = playerData.currentDate.Month;
+        currLevelDay = playerData.currentDate.Day;
+
+        currentMoneyText.text = String.Format("${0:0.00}", playerData.currentMoney);
 
         Debug.Log("Load Calendar Data!");
         if (playerData.calendarData.Count == 0) {

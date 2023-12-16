@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
+    [Header("Menu Navigation")]
+    [SerializeField] private RecipeBookUI recipeBookMenu;
+
     [Header("Menu Buttons")]
     [SerializeField] private Button resumeButton;
     [SerializeField] private Button recipeButton;
@@ -16,7 +19,7 @@ public class PauseMenu : MonoBehaviour
             GameHandler.Instance.TogglePauseGame();
         });
         recipeButton.onClick.AddListener(() => {
-
+            recipeBookMenu.gameObject.SetActive(true);
         });
         quitButton.onClick.AddListener(() => {
             // save the game
@@ -29,6 +32,7 @@ public class PauseMenu : MonoBehaviour
     private void Start() {
         GameHandler.Instance.OnGamePaused += GameHandler_OnGamePaused;
         GameHandler.Instance.OnGameUnpaused += GameHandler_OnGameUnpaused;
+        recipeBookMenu.gameObject.SetActive(false);
         Hide();
     }
 

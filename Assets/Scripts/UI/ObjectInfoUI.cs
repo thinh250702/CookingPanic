@@ -48,20 +48,20 @@ public class ObjectInfoUI : MonoBehaviour {
 
     public void Player_OnSelectedObjectChanged(object sender, Player.OnSelectedObjectChangedEventArgs e) {
         //rootContainer.gameObject.SetActive(true);
-        if (e.selectedObject is ContainerObject) {
-            ContainerObject containerObject = e.selectedObject as ContainerObject;
-            UpdateVisual(containerObject);
-            
-        } else if (e.selectedObject is FunctionalObject) {
-            FunctionalObject functionalObject = e.selectedObject as FunctionalObject;
-            UpdateVisual(functionalObject);
-        } else if (e.selectedObject is IngredientObject) {
-            IngredientObject ingredientObject = e.selectedObject as IngredientObject;
-            UpdateVisual(ingredientObject);
-        }
-        else {
-            rootContainer.gameObject.SetActive(false);
-            ResetAllChilds();
+        switch (e.selectedObject) {
+            case ContainerObject containerObject:
+                UpdateVisual(containerObject);
+                break;
+            case FunctionalObject functionalObject:
+                UpdateVisual(functionalObject);
+                break;
+            case IngredientObject ingredientObject:
+                UpdateVisual(ingredientObject);
+                break;
+            default:
+                rootContainer.gameObject.SetActive(false);
+                ResetAllChilds();
+                break;
         }
     }
 
@@ -109,60 +109,63 @@ public class ObjectInfoUI : MonoBehaviour {
             if (child == containerInfoTemplate) continue;
             Destroy(child.gameObject);
         }
-        if (containerObject is RaycastDropContainer) {
-            rootContainer.gameObject.SetActive(true);
-            ResetAllChilds();
-            RaycastDropContainer raycastDropContainer = containerObject as RaycastDropContainer;
-            switch (raycastDropContainer.GetContainerType()) {
-                case RaycastDropContainer.Type.MetalTray:
-                    /*foreach (PickableObject item in raycastDropContainer.GetChildrenObject()) {
-                        Debug.Log(item.name);
-                        IngredientObject ingredient = item as IngredientObject;
-                        Transform rowTransform = Instantiate(containerInfoTemplate, containerInfoRoot);
-                        rowTransform.gameObject.SetActive(true);
-                        rowTransform.GetComponent<ContainerInfoSingleUI>().SetIngredientObjectSO(ingredient.GetIngredientObjectSO());
-                    }*/
-                    break;
-                case RaycastDropContainer.Type.ServingTray:
-                    foreach (PickableObject item in raycastDropContainer.GetChildrenObject()) {
-                        FoodPackage container = item as FoodPackage;
-                        Transform rowTransform = Instantiate(containerInfoTemplate, containerInfoRoot);
-                        rowTransform.gameObject.SetActive(true);
-                        rowTransform.GetComponent<ContainerInfoSingleUI>().SetContainerObjectSO(container.GetContainerObjectSO());
-                    }
-                    break;
-                case RaycastDropContainer.Type.AssemblyTable:
-                    break;
-            }
-        } else if (containerObject is FoodPackage) {
-            rootContainer.gameObject.SetActive(true);
-            ResetAllChilds();
-            foreach (PickableObject item in containerObject.GetChildrenObject()) {
-                IngredientObject ingredient = item as IngredientObject;
-                Transform rowTransform = Instantiate(containerInfoTemplate, containerInfoRoot);
-                rowTransform.gameObject.SetActive(true);
-                rowTransform.GetComponent<ContainerInfoSingleUI>().SetIngredientObjectSO(ingredient.GetIngredientObjectSO());
-            }
-        } else if (containerObject is StockHolderObject) {
-            rootContainer.gameObject.SetActive(true);
-            ResetAllChilds();
-            stockContainerInfoRoot.gameObject.SetActive(true);
-            StockHolderObject stockHolder = containerObject as StockHolderObject;
-            StockObject stockObject = stockHolder.GetStockObject();
 
-            stockImage.sprite = stockObject.GetStockObjectSO().sprite;
-            stockNameText.text = stockObject.GetStockObjectSO().stockName;
+        switch (containerObject) {
+            case RaycastDropContainer raycastDropContainer:
+                rootContainer.gameObject.SetActive(true);
+                ResetAllChilds();
+                switch (raycastDropContainer.GetContainerType()) {
+                    case RaycastDropContainer.Type.MetalTray:
+                        foreach (PickableObject item in raycastDropContainer.GetChildrenObject()) {
+                            Debug.Log(item.name);
+                            IngredientObject ingredient = item as IngredientObject;
+                            Transform rowTransform = Instantiate(containerInfoTemplate, containerInfoRoot);
+                            rowTransform.gameObject.SetActive(true);
+                            rowTransform.GetComponent<ContainerInfoSingleUI>().SetIngredientObjectSO(ingredient.GetIngredientObjectSO());
+                        }
+                        break;
+                    case RaycastDropContainer.Type.ServingTray:
+                        foreach (PickableObject item in raycastDropContainer.GetChildrenObject()) {
+                            FoodPackage container = item as FoodPackage;
+                            Transform rowTransform = Instantiate(containerInfoTemplate, containerInfoRoot);
+                            rowTransform.gameObject.SetActive(true);
+                            rowTransform.GetComponent<ContainerInfoSingleUI>().SetContainerObjectSO(container.GetContainerObjectSO());
+                        }
+                        break;
+                    case RaycastDropContainer.Type.AssemblyTable:
+                        break;
+                }
+                break;
+            case FoodPackage foodPackage:
+                rootContainer.gameObject.SetActive(true);
+                ResetAllChilds();
+                foreach (PickableObject item in containerObject.GetChildrenObject()) {
+                    IngredientObject ingredient = item as IngredientObject;
+                    Transform rowTransform = Instantiate(containerInfoTemplate, containerInfoRoot);
+                    rowTransform.gameObject.SetActive(true);
+                    rowTransform.GetComponent<ContainerInfoSingleUI>().SetIngredientObjectSO(ingredient.GetIngredientObjectSO());
+                }
+                break;
+            case StockHolderObject stockHolder:
+                rootContainer.gameObject.SetActive(true);
+                ResetAllChilds();
+                stockContainerInfoRoot.gameObject.SetActive(true);
+                StockObject stockObject = stockHolder.GetStockObject();
 
-            float maxQuantity = (float)stockObject.GetStockObjectSO().quantity;
-            float currentQuantity = (float)stockObject.CurrentQuantity;
+                stockImage.sprite = stockObject.GetStockObjectSO().sprite;
+                stockNameText.text = stockObject.GetStockObjectSO().stockName;
 
-            float percentage = currentQuantity / maxQuantity;
-            barImage.fillAmount = percentage;
-            remainText.text = $"{(percentage * 100)}%";
-            Debug.Log(currentQuantity.ToString());
-        } else {
-            rootContainer.gameObject.SetActive(false);
-            ResetAllChilds();
+                float maxQuantity = (float)stockObject.GetStockObjectSO().quantity;
+                float currentQuantity = (float)stockObject.CurrentQuantity;
+
+                float percentage = currentQuantity / maxQuantity;
+                barImage.fillAmount = percentage;
+                remainText.text = $"{(percentage * 100)}%";
+                break;
+            default:
+                rootContainer.gameObject.SetActive(false);
+                ResetAllChilds();
+                break;
         }
     }
 }

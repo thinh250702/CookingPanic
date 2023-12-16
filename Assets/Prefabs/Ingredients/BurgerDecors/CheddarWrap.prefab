@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 7238623811908884584}
   - component: {fileID: 7164736206964670301}
   - component: {fileID: 4933639258732996832}
+  - component: {fileID: 1105894033534902457}
+  - component: {fileID: 2244074426860951740}
   m_Layer: 0
   m_Name: CheddarWrap
   m_TagString: Untagged
@@ -96,6 +98,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ingredientObjectSO: {fileID: 11400000, guid: 161123a89af178446a7df6a164d3dfc1, type: 2}
+--- !u!114 &1105894033534902457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5762252745318949737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!114 &2244074426860951740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5762252745318949737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7fc3fa4cb7aa4749a4969a97c9dde21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableObject: {fileID: 4933639258732996832}
 --- !u!1001 &6738640473338471056
 PrefabInstance:
   m_ObjectHideFlags: 0

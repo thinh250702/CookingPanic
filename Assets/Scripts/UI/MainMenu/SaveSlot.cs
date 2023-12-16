@@ -39,9 +39,9 @@ public class SaveSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             hasDataContent.SetActive(true);
 
             playerNameText.text = data.playerName;
-            lastPlayedText.text = DateTime.FromBinary(data.lastPlayed).ToString();
+            lastPlayedText.text = DateTime.FromBinary(data.lastPlayed).ToString("MM/dd/yyyy");
             totalMoneyText.text = data.currentMoney.ToString();
-            currentDateText.text = $"{data.currentDay}/{data.currentMonth}";
+            currentDateText.text = $"{data.currentDate.Day}/{data.currentDate.Month}";
         }
     }
 
