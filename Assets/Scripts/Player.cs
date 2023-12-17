@@ -1,9 +1,8 @@
 using StarterAssets;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.ShaderGraph.Serialization;
 using UnityEngine;
+using UnityEngine.Windows;
 
 public class Player : MonoBehaviour, IParentObject {
     public static Player Instance { get; private set; }
@@ -41,9 +40,6 @@ public class Player : MonoBehaviour, IParentObject {
     private void GameHandler_OnStateChanged(object sender, EventArgs e) {
         if (GameHandler.Instance.IsGamePlaying()) {
             _input.cursorInputForLook = true;
-        }
-        if (GameHandler.Instance.IsGameOver()) {
-            _input.cursorInputForLook = false;
         }
     }
 

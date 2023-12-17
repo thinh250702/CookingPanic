@@ -433,6 +433,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CookingProgressBarUI
       objectReference: {fileID: 0}
+    - target: {fileID: 2271475474213841107, guid: 89d63c55af7af88408d88e0ac4908347, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3222042970979792785, guid: 89d63c55af7af88408d88e0ac4908347, type: 3}
       propertyPath: hasProgressObject
       value: 

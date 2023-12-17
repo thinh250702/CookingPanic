@@ -8,7 +8,7 @@ using UnityEngine;
 public class CuttingBoard : ContainerObject, IHasProgress {
 
     public static event EventHandler OnAnyCut;
-    public event EventHandler<EventArgs> OnCut;
+    public event EventHandler OnCut;
     public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
 
     [SerializeField] private Transform playerHoldPoint;

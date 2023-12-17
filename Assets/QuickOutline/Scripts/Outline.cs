@@ -56,7 +56,7 @@ public class Outline : MonoBehaviour {
   
   private Mode outlineMode = Mode.OutlineVisible;
   private Color outlineColor = new Color(1.0f, 0.76471f, 0f);
-  private float outlineWidth = 4f;
+  private float outlineWidth = 3f;
 
   [Header("Optional")]
 

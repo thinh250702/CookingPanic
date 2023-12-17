@@ -45,6 +45,8 @@ public class FoodPackage : ContainerObject {
                             else {
                                 playerIngredient.NormalDropObject(this, dropPoint, Quaternion.identity);
                             }
+                        } else {
+                            PopupMessageUI.Instance.SetMessage("Can't add this ingredient!");
                         }
                     } else {
                         PopupMessageUI.Instance.SetMessage("Can't pick up food package!");
@@ -80,7 +82,6 @@ public class FoodPackage : ContainerObject {
             return false;
         } else {
             ingredientObjectList.Add(ingredientObjectSO);
-            Debug.Log($"{string.Join(",", ingredientObjectList)}");
             return true;
         }
     }

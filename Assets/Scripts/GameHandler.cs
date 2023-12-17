@@ -36,9 +36,6 @@ public class GameHandler : MonoBehaviour, IDataPersistence {
     private float gamePlayingTimerMax = 300f;
     private bool isGamePaused = false;
 
-    /*public int levelDay { get; private set; }
-    public int levelMonth { get; private set; }*/
-
     public DateTime levelDate { get; private set; }
 
     private float currentMoney;

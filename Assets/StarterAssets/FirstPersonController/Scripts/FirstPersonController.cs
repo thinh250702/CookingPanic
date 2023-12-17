@@ -80,7 +80,9 @@ namespace StarterAssets {
         }
 
         private void LateUpdate() {
-            CameraRotation();
+            if (!GameHandler.Instance.IsGameOver()) {
+                CameraRotation();
+            }
         }
 
         private void CameraRotation() {

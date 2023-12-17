@@ -221,7 +221,6 @@ public class DynamicCalendarUI : MonoBehaviour, IDataPersistence
             confirmPopupUI.Show(
             // function to execute if we select 'yes'
             () => {
-                Debug.Log("Ready to start the game!");
                 // save the game before load
                 DataPersistenceManager.Instance.SaveGame();
                 // load the game play scene
@@ -229,7 +228,7 @@ public class DynamicCalendarUI : MonoBehaviour, IDataPersistence
             },
             // function to execute if we select 'cancel'
             () => {
-                Debug.Log("Cancel button pressed!");
+                
             });
         } else {
             // do nothing
@@ -261,12 +260,9 @@ public class DynamicCalendarUI : MonoBehaviour, IDataPersistence
 
         currentMoneyText.text = String.Format("${0:0.00}", playerData.currentMoney);
 
-        Debug.Log("Load Calendar Data!");
         if (playerData.calendarData.Count == 0) {
-            Debug.Log("Empty calendar!");
             calendarData = InitializeCalendarData();
         } else {
-            Debug.Log("Not empty calendar!");
             calendarData = playerData.calendarData;
         }
         string jsonData = JsonConvert.SerializeObject(calendarData, Formatting.Indented);
@@ -274,7 +270,6 @@ public class DynamicCalendarUI : MonoBehaviour, IDataPersistence
     }
 
     public void SaveData(PlayerData playerData) {
-        Debug.Log("Save Calendar Data!");
         playerData.calendarData = calendarData;
     }
 }

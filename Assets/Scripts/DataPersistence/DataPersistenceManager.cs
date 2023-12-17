@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -23,7 +22,7 @@ public class DataPersistenceManager : MonoBehaviour {
 
     private void Awake() {
         if (Instance != null) {
-            Debug.LogError("There is more than one Data Persistence Manager!");
+            // Debug.LogError("There is more than one Data Persistence Manager!");
             Destroy(this.gameObject);
             return;
         }
@@ -31,7 +30,7 @@ public class DataPersistenceManager : MonoBehaviour {
         DontDestroyOnLoad(this.gameObject);
 
         if (disableDataPersistence) {
-            Debug.LogWarning("Data Persistence is currently disabled!");
+            // Debug.LogWarning("Data Persistence is currently disabled!");
         }
 
         // C:\Users\1052 DMX\AppData\LocalLow\DefaultCompany\SampleProject
@@ -50,12 +49,12 @@ public class DataPersistenceManager : MonoBehaviour {
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         if (scene.name == SceneLoader.Scene.SelectionScene.ToString()) {
-            Debug.Log("LevelSelection is loaded!");
+            // Debug.Log("LevelSelection is loaded!");
             Time.timeScale = 1f;
             Cursor.lockState = CursorLockMode.None;
         }
         if (scene.name == SceneLoader.Scene.MainScene.ToString()) {
-            Debug.Log("GameScene is loaded!");
+            // Debug.Log("GameScene is loaded!");
             Cursor.lockState = CursorLockMode.Locked;
         }
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
@@ -75,7 +74,7 @@ public class DataPersistenceManager : MonoBehaviour {
 
         // if we don't have any data to save, log a warning here
         if (this.playerData == null) {
-            Debug.LogWarning("No data was found. A New Game needs to be started before data can be saved.");
+            // Debug.LogWarning("No data was found. A New Game needs to be started before data can be saved.");
             return;
         }
 
@@ -106,7 +105,7 @@ public class DataPersistenceManager : MonoBehaviour {
 
         // if no data can be loaded, don't continue
         if (playerData == null) {
-            Debug.Log("No data was found. A New Game needs to be started before data can be loaded.");
+            // Debug.Log("No data was found. A New Game needs to be started before data can be loaded.");
             return;
         }
 
@@ -140,7 +139,7 @@ public class DataPersistenceManager : MonoBehaviour {
         this.selectedProfileId = dataHandler.GetMostRecentlyUpdatedProfileId();
         if (overrideSelectedProfileId) {
             this.selectedProfileId = testSelectedProfileId;
-            Debug.LogWarning("Overrode selected profile id with test id: " + testSelectedProfileId);
+            // Debug.LogWarning("Overrode selected profile id with test id: " + testSelectedProfileId);
         }
     }
 

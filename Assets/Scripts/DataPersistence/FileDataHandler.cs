@@ -1,10 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System;
 using System.IO;
-using System.Drawing;
-using UnityEngine.Playables;
 using Newtonsoft.Json;
 
 public class FileDataHandler
@@ -38,7 +34,7 @@ public class FileDataHandler
                 // deserialize the data from Json back into the C# object
                 loadedData = JsonConvert.DeserializeObject<PlayerData>(dataToLoad);
             } catch (Exception e) {
-                Debug.LogError("Error occured when trying to load file at path: " + fullPath + "\n" + e);
+                // Debug.LogError("Error occured when trying to load file at path: " + fullPath + "\n" + e);
             }
         }
         return loadedData;
@@ -64,7 +60,7 @@ public class FileDataHandler
                 }
             }
         } catch (Exception e) {
-            Debug.LogError("Error occured when trying to save file at path: " + fullPath + "\n" + e);
+            // Debug.LogError("Error occured when trying to save file at path: " + fullPath + "\n" + e);
         }
     }
 
@@ -80,10 +76,10 @@ public class FileDataHandler
                 // delete the profile folder and everything within it
                 Directory.Delete(Path.GetDirectoryName(fullPath), true);
             } else {
-                Debug.LogWarning("Tried to delete profile data, but data was not found at path: " + fullPath);
+                // Debug.LogWarning("Tried to delete profile data, but data was not found at path: " + fullPath);
             }
         } catch (Exception e) {
-            Debug.LogError("Failed to delete profile data for profileId: " + profileId + " at path: " + fullPath + "\n" + e);
+            // Debug.LogError("Failed to delete profile data for profileId: " + profileId + " at path: " + fullPath + "\n" + e);
         }
     }
 
@@ -99,7 +95,7 @@ public class FileDataHandler
             // if it doesn't, then this folder isn't a profile and should be skipped
             string fullPath = Path.Combine(dataDirPath, profileId, dataFileName);
             if (!File.Exists(fullPath)) {
-                Debug.LogWarning("Skipping directory when loading all profiles because it does not contain data: " + profileId);
+                // Debug.LogWarning("Skipping directory when loading all profiles because it does not contain data: " + profileId);
                 continue;
             }
 
@@ -110,7 +106,7 @@ public class FileDataHandler
             if (profileData != null) {
                 profileDictionary.Add(profileId, profileData);
             } else {
-                Debug.LogError("Tried to load profile but something went wrong. ProfileId: " + profileId);
+                // Debug.LogError("Tried to load profile but something went wrong. ProfileId: " + profileId);
             }
         }
 
